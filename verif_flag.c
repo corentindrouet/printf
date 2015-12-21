@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 09:18:03 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/17 14:38:48 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/21 12:13:09 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,9 @@ char	verif_lenght(const char * restrict f)
 
 char	verif_spec(const char * restrict f)
 {
-	char	*str;
+	char	str[16] = "sSpdDioOuUxXcC";
 	int		i;
 
-	str = "sSpdDioOuUxXcC";
 	i = -1;
 	while (str[++i])
 		if (f[0] == str[i])
