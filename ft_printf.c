@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/04 09:06:05 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/04 13:01:44 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ int		ft_printf(const char *restrict format, ...)
 	{
 		if (format[i[0] + i[1]] == '%')
 		{
-			write(1, "|", 1);
 			write(1, &format[i[1]], i[0]);
-			write(1, "|", 1);
+			pct_d(ap, &format[i[1] + i[0] + 1]);
 			i[1] = i[0];
 			i[0] = 0;
 			s = 14;
