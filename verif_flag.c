@@ -6,13 +6,13 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 09:18:03 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/21 12:13:09 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/04 09:07:43 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	verif_flag(const char * restrict f)
+char	verif_flag(const char *restrict f)
 {
 	char	c;
 
@@ -22,17 +22,17 @@ char	verif_flag(const char * restrict f)
 	return (c);
 }
 
-int		verif_width(const char * restrict f)
+int		verif_width(const char *restrict f)
 {
 	return (ft_atoi(f));
 }
 
-int		verif_precision(const char * restrict f)
+int		verif_precision(const char *restrict f)
 {
 	return (ft_atoi(f));
 }
 
-char	verif_lenght(const char * restrict f)
+char	verif_lenght(const char *restrict f)
 {
 	if (f[0] == 'h' || (f[0] == 'h' && f[1] == 'h')
 		|| f[0] == 'l' || (f[0] == 'l' && f[1] == 'l')
@@ -41,11 +41,12 @@ char	verif_lenght(const char * restrict f)
 	return (-1);
 }
 
-char	verif_spec(const char * restrict f)
+char	verif_spec(const char *restrict f)
 {
-	char	str[16] = "sSpdDioOuUxXcC";
+	char	*str;
 	int		i;
 
+	str = "sSpdDioOuUxXcC";
 	i = -1;
 	while (str[++i])
 		if (f[0] == str[i])

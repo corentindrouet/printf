@@ -6,66 +6,47 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/21 15:54:33 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/04 09:06:05 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char * restrict format, ...)
+int		ft_printf(const char *restrict format, ...)
 {
 	va_list	ap;
-	int		i;
-	int		j;
-	char	c[3];
-	int		d[2];
-	char	ptr[15] = "sSpdDioOuUxXcC";
-	void	(*f)(va_list, char*, int*);
+	int		i[2];
+	int		s;
+	char	*ptr;
 
-	f = &pct_d;
+	ptr = "sSpdDioOuUxXcC";
+	i[0] = 0;
+	i[1] = 0;
 	va_start(ap, format);
-	i = 0;
-	while (format[i])
+	while (format[i[0] + i[1]])
 	{
-		if (format[i] == '%' && format[i + 1] == '%')
-			write(1, "%", 1);
-		else if (format[i] == '%')
+		if (format[i[0] + i[1]] == '%')
 		{
-			i++;
-			if ((c[0] = verif_flag(&format[i])) != -1)
-				i++;
-			if ((d[0] = verif_width(&format[i])) != -1)
+			write(1, "|", 1);
+			write(1, &format[i[1]], i[0]);
+			write(1, "|", 1);
+			i[1] = i[0];
+			i[0] = 0;
+			s = 14;
+			while (s == 14)
 			{
-				j = d[0];
-				while (j > 0)
-				{
-					j = j / 10;
-					i++;
-				}
-			}
-			if ((d[1] = verif_precision(&format[i + 1])) != -1)
-			{
-				j = d[1];
-				while (j > 0)
-				{
-					j = j / 10;
-					i++;
-				}
-			}
-			if ((c[1] = verif_lenght(&format[i])) != -1)
-				i++;
-			if ((c[2] = verif_spec(&format[i])) != -1)
-			{
-				j = 0;
-				while (ptr[j] && ptr[j] != c[2])
-					j++;
-				pct_d(ap, c, d);
+				s = -1;
+				while (ptr[++s])
+					if (ptr[s] == format[i[1] + i[0]])
+						break ;
+				i[1]++;
 			}
 		}
 		else
-			ft_putchar(format[i]);
-		i++;
+			i[0]++;
 	}
+	if (i[0] != 0)
+		write(1, &format[i[1]], i[0]);
 	va_end(ap);
 	return (1);
 }
