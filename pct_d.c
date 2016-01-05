@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:39:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/05 11:47:30 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/05 14:58:05 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	pct_d(va_list ap, const char *restrict format)
 	{
 		i = 0;
 		ret++;
-		while (format[ret] != ptr[i])
+		while (format[ret] != ptr[i] && ptr[i])
 			i++;
 	}
 	if ((ft_strchr(format, 'h') != NULL)
