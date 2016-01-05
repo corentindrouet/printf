@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/05 08:40:06 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/05 12:07:58 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	pct_jd(va_list ap, const char *restrict format)
 
 	i = va_arg(ap, intmax_t);
 	res = ft_lltoa((long long)i);
+	if (i > 0 && (ft_strchr(format, '+') != NULL))
+		res = aj_plus(&res);
 	ft_putstr(res);
 }
 
@@ -29,6 +31,8 @@ void	pct_zd(va_list ap, const char *restrict format)
 
 	i = va_arg(ap, size_t);
 	res = ft_lltoa((long long)i);
+	if (i > 0 && (ft_strchr(format, '+') != NULL))
+		res = aj_plus(&res);
 	ft_putstr(res);
 }
 
@@ -39,7 +43,7 @@ void	pct_dd(va_list ap, const char *restrict format)
 
 	i = va_arg(ap, int);
 	res = ft_itoa(i);
-	if (i > 0 && (ft_strchr(format) != NULL))
+	if (i > 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
 	ft_putstr(res);
 }
@@ -60,4 +64,22 @@ char	*aj_plus(char **ptr)
 	res[0] = '+';
 	free(*ptr);
 	return (res);
+}
+
+char	*aj_decal(char **ptr, const char *restrict format)
+{
+	int		i;
+	char	*res;
+
+	i = 0;
+	while (format[i] < '0' || format[i] > '9')
+		i++;
+	i = ft_atoi(&format[i]);
+	if (i <= ft_strlen(*ptr))
+		return (*ptr);
+	res = (char*)malloc(sizeof(char) * (i + 1));
+	if (ft_strchr(format, '-') == NULL)
+	{
+		
+	}
 }
