@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:36:36 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/04 14:17:58 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/05 08:30:10 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include "libft/libft.h"
 
+char	*aj_plus(char **ptr);
 char	*ft_lltoa(long long nbr);
 int		recur_lltoa(unsigned long long nbr, char *ptr, int index);
 int		ft_printf(const char *restrict format, ...);

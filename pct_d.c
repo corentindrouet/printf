@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:39:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/04 14:36:02 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/05 08:41:38 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	pct_d(va_list ap, const char *restrict format)
 		pct_dd(ap);
 }
 
-void	pct_hhd(va_list ap)
+void	pct_hhd(va_list ap, const char *restrict format)
 {
 	signed char	ptr;
 	int			convert;
@@ -55,35 +55,35 @@ void	pct_hhd(va_list ap)
 	ptr = (signed char)va_arg(ap, int);
 	convert = ptr;
 	res = ft_itoa(convert);
-	write(1, res, ft_strlen(res));
+	ft_putstr(res);
 }
 
-void	pct_hd(va_list ap)
+void	pct_hd(va_list ap, const char *restrict format)
 {
 	short	i;
 	char	*res;
 
 	i = (short)va_arg(ap, int);
 	res = ft_itoa((int)i);
-	write(1, res, ft_strlen(res));
+	ft_putstr(res);
 }
 
-void	pct_ld(va_list ap)
+void	pct_ld(va_list ap, const char *restrict format)
 {
 	long	i;
 	char	*res;
 
 	i = va_arg(ap, long);
-	res = ft_lltoa((long)i);
-	write(1, res, ft_strlen(res));
+	res = ft_lltoa((long long)i);
+	ft_putstr(res);
 }
 
-void	pct_lld(va_list ap)
+void	pct_lld(va_list ap, const char *restrict format)
 {
 	long long	i;
 	char		*res;
 
 	i = va_arg(ap, long long);
 	res = ft_lltoa(i);
-	write(1, res, ft_strlen(res));
+	ft_putstr(res);
 }
