@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/05 15:47:44 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/05 15:55:22 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	pct_dd(va_list ap, const char *restrict format)
 	res = aj_decal(&res, format);
 	if (i > 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
+	else if (i > 0 && (ft_strchr(format, '+') == NULL) && (ft_strchr(format, ' ') != NULL))
+		ft_putchar(' ');
 	ft_putstr(res);
 }
 
