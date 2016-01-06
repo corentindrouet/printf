@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/06 10:29:24 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/06 12:02:55 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	pct_jd(va_list ap, const char *restrict format)
 	res = aj_decal(&res, format);
 	if (i > 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
-	else if (i > 0 && (ft_strchr(format, '+') == NULL) && (ft_strchr(format, ' ') != NULL))
+	else if (i > 0 && (ft_strchr(format, '+') == NULL)
+		&& (ft_strchr(format, ' ') != NULL))
 		ft_putchar(' ');
 	ft_putstr(res);
 }
@@ -39,7 +40,8 @@ void	pct_zd(va_list ap, const char *restrict format)
 	res = aj_decal(&res, format);
 	if (i > 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
-	else if (i > 0 && (ft_strchr(format, '+') == NULL) && (ft_strchr(format, ' ') != NULL))
+	else if (i > 0 && (ft_strchr(format, '+') == NULL)
+		&& (ft_strchr(format, ' ') != NULL))
 		ft_putchar(' ');
 	ft_putstr(res);
 }
@@ -55,7 +57,8 @@ void	pct_dd(va_list ap, const char *restrict format)
 	res = aj_decal(&res, format);
 	if (i > 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
-	else if (i > 0 && (ft_strchr(format, '+') == NULL) && (ft_strchr(format, ' ') != NULL))
+	else if (i > 0 && (ft_strchr(format, '+') == NULL)
+		&& (ft_strchr(format, ' ') != NULL))
 		ft_putchar(' ');
 	ft_putstr(res);
 }
@@ -81,11 +84,9 @@ char	*aj_plus(char **ptr)
 	res = (char*)malloc(ft_strlen(*ptr) + 2);
 	i = ft_strlen(*ptr) - 1;
 	res[i + 2] = '\0';
-	while (i >= 0)
-	{
+	i++;
+	while (--i >= 0)
 		res[i + 1] = (*ptr)[i];
-		i--;
-	}
 	res[0] = '+';
 	free(*ptr);
 	return (res);
@@ -111,29 +112,12 @@ char	*aj_decal(char **ptr, const char *restrict format)
 	i = ft_atoi(&format[i]);
 	if (i <= (int)ft_strlen(*ptr))
 		return (*ptr);
-	res = (char*)malloc(sizeof(char) * (i + 1));
-	res[i] = '\0';
+	res = ft_strnew(sizeof(char) * (i + 1));
 	i--;
 	if (ft_strchr(format, '-') == NULL)
-	{
-		j--;
-		while (j >= 0)
-		{
-			res[i] = (*ptr)[j];
-			i--;
-			j--;
-		}
-		while (i >= 0)
-			res[i--] = c;
-	}
+		aj_decal_d(i, ptr, res, c);
 	else
-	{
-		ft_strcpy(res, *ptr);
-		if (ft_strchr(format, '+') != NULL)
-			i--;
-		while (j < (i + 1))
-			res[j++] = ' ';
-	}
+		aj_decal_g(i, format, res, ptr);
 	free(*ptr);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:36:36 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/05 14:16:40 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/06 12:00:12 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <unistd.h>
 # include "libft/libft.h"
 
+void	aj_decal_g(int i, const char *restrict format, char *res, char **ptr);
+void	aj_decal_d(int i, char **ptr, char *res, char c);
 char	*aj_zero(char **ptr, const char *restrict format);
 char	*aj_decal(char **ptr, const char *restrict format);
 int		cont_carac(char *s, char c);
