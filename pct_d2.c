@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/06 12:02:55 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/06 13:10:39 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,10 @@ char	*aj_decal(char **ptr, const char *restrict format)
 	if (i <= (int)ft_strlen(*ptr))
 		return (*ptr);
 	res = ft_strnew(sizeof(char) * (i + 1));
-	i--;
 	if (ft_strchr(format, '-') == NULL)
-		aj_decal_d(i, ptr, res, c);
+		aj_decal_d(--i, ptr, res, c);
 	else
-		aj_decal_g(i, format, res, ptr);
+		aj_decal_g(--i, format, res, ptr);
 	free(*ptr);
 	return (res);
 }

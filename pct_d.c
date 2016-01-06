@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:39:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/06 11:37:55 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/06 15:38:15 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,6 @@
 
 void	pct_d(va_list ap, const char *restrict format)
 {
-	int		ret;
-	int		i;
-	char	*ptr;
-	char	*str;
-
-	str = ft_strnew(25);
-	ptr = "hljzd";
-	i = 5;
-	ret = -1;
-	while (i == 5)
-	{
-		i = 0;
-		ret++;
-		while (format[ret] != ptr[i] && ptr[i])
-			i++;
-	}
 	if ((ft_strchr(format, 'h') != NULL)
 		&& (ft_strchr(format, 'h') != ft_strrchr(format, 'h')))
 		pct_hhd(ap, format);

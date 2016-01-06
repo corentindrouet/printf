@@ -6,11 +6,32 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/05 14:25:08 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/06 15:38:10 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	f_init(void (**f)(va_list, const char *restrict))
+{
+	int	i;
+
+	i = -1;
+/*	f[++i] = &pct_s;
+	f[++i] = &pct_S;
+	f[++i] = &pct_p;
+*/	f[++i] = &pct_d;
+/*	f[++i] = &pct_D;
+	f[++i] = &pct_i;
+	f[++i] = &pct_o;
+	f[++i] = &pct_O;
+	f[++i] = &pct_u;
+	f[++i] = &pct_U;
+	f[++i] = &pct_x;
+	f[++i] = &pct_X;
+	f[++i] = &pct_c;
+	f[++i] = &pct_C;*/
+}
 
 int		ft_printf(const char *restrict format, ...)
 {
@@ -18,34 +39,22 @@ int		ft_printf(const char *restrict format, ...)
 	int		i[2];
 	int		s;
 	char	*ptr;
+	void	(*f[14])(va_list, const char *restrict);
 
-	ptr = "sSpdDioOuUxXcC";
+	f_init(f);
+//	ptr = "sSpdDioOuUxXcC";
+	ptr = "dDioOuUxXcCsSp";
 	i[0] = 0;
 	i[1] = 0;
 	va_start(ap, format);
-	while (format[i[0] + i[1]])
+//			pct_d(ap, ft_strsub(&format[i[1] + i[0] + 1], 0, cont_carac((char*)&format[i[1] + i[0] + 1], 'd')));
+	while ((i[1] = cont_carac((char*)&format[i[0]], '%') >= 0))
 	{
-		if (format[i[0] + i[1]] == '%')
-		{
-			write(1, &format[i[1]], i[0]);
-			pct_d(ap, ft_strsub(&format[i[1] + i[0] + 1], 0, cont_carac((char*)format, 'd')));
-			i[1] = i[0];
-			i[0] = 0;
-			s = 14;
-			while (s == 14)
-			{
-				s = -1;
-				while (ptr[++s])
-					if (ptr[s] == format[i[1] + i[0]])
-						break ;
-				i[1]++;
-			}
-		}
-		else
-			i[0]++;
+		write(1, &format[i[0]], i[1]);
+		i[0] += i[1];
+		i[1] = 0;
+		while ()
 	}
-	if (i[0] != 0)
-		write(1, &format[i[1]], i[0]);
 	va_end(ap);
 	return (1);
 }
@@ -55,7 +64,8 @@ int		cont_carac(char *s, char c)
 	int		i;
 
 	i = 0;
-	while (s[i] && s[i] != c)
-		i++;
+	while (s[i] != c)
+		if (!s[i++])
+			return (-1);
 	return (i);
 }
