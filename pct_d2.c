@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/05 15:55:22 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/06 10:29:24 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ void	pct_jd(va_list ap, const char *restrict format)
 
 	i = va_arg(ap, intmax_t);
 	res = ft_lltoa((long long)i);
+	res = aj_zero(&res, format);
+	res = aj_decal(&res, format);
 	if (i > 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
+	else if (i > 0 && (ft_strchr(format, '+') == NULL) && (ft_strchr(format, ' ') != NULL))
+		ft_putchar(' ');
 	ft_putstr(res);
 }
 
@@ -31,8 +35,12 @@ void	pct_zd(va_list ap, const char *restrict format)
 
 	i = va_arg(ap, size_t);
 	res = ft_lltoa((long long)i);
+	res = aj_zero(&res, format);
+	res = aj_decal(&res, format);
 	if (i > 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
+	else if (i > 0 && (ft_strchr(format, '+') == NULL) && (ft_strchr(format, ' ') != NULL))
+		ft_putchar(' ');
 	ft_putstr(res);
 }
 

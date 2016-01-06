@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:39:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/05 14:58:05 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/06 10:30:03 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,12 @@ void	pct_hhd(va_list ap, const char *restrict format)
 	ptr = (signed char)va_arg(ap, int);
 	convert = ptr;
 	res = ft_itoa(convert);
-	if (ptr > 0 && (ft_strchr(format, '+') != NULL))
+	res = aj_zero(&res, format);
+	res = aj_decal(&res, format);
+	if (i > 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
+	else if (i > 0 && (ft_strchr(format, '+') == NULL) && (ft_strchr(format, ' ') != NULL))
+		ft_putchar(' ');
 	ft_putstr(res);
 }
 
@@ -69,8 +73,12 @@ void	pct_hd(va_list ap, const char *restrict format)
 
 	i = (short)va_arg(ap, int);
 	res = ft_itoa((int)i);
+	res = aj_zero(&res, format);
+	res = aj_decal(&res, format);
 	if (i > 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
+	else if (i > 0 && (ft_strchr(format, '+') == NULL) && (ft_strchr(format, ' ') != NULL))
+		ft_putchar(' ');
 	ft_putstr(res);
 }
 
@@ -81,8 +89,12 @@ void	pct_ld(va_list ap, const char *restrict format)
 
 	i = va_arg(ap, long);
 	res = ft_lltoa((long long)i);
+	res = aj_zero(&res, format);
+	res = aj_decal(&res, format);
 	if (i > 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
+	else if (i > 0 && (ft_strchr(format, '+') == NULL) && (ft_strchr(format, ' ') != NULL))
+		ft_putchar(' ');
 	ft_putstr(res);
 }
 
@@ -93,7 +105,11 @@ void	pct_lld(va_list ap, const char *restrict format)
 
 	i = va_arg(ap, long long);
 	res = ft_lltoa(i);
+	res = aj_zero(&res, format);
+	res = aj_decal(&res, format);
 	if (i > 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
+	else if (i > 0 && (ft_strchr(format, '+') == NULL) && (ft_strchr(format, ' ') != NULL))
+		ft_putchar(' ');
 	ft_putstr(res);
 }
