@@ -6,7 +6,7 @@
 /*   By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 12:00:06 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/02 14:52:03 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/07 13:42:35 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+void				ft_putwchar_t(wchar_t *str);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void				ft_lstadd(t_list **alst, t_list *new);
