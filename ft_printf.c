@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/07 11:25:25 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/07 15:54:18 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ int			ft_printf(const char *restrict format, ...)
 		i[1] = -1;
 		s = 'd';
 		while (++i[1] < 15)
-			if ((cont_carac((char*)&format[i[0]], s) >
-				cont_carac((char*)&format[i[0]], ptr[i[1]]))
-					&& cont_carac((char*)&format[i[0]], ptr[i[1]]) > 0)
+			if ( cont_carac((char*)&format[i[0]], ptr[i[1]]) >= 0)
+				if ((cont_carac((char*)&format[i[0]], s) >
+					cont_carac((char*)&format[i[0]], ptr[i[1]]))
+						|| cont_carac((char*)&format[i[0]], s) < 0)
 				s = ptr[i[1]];
 		i[1] = 0;
 		while (ptr[i[1]] != s)
