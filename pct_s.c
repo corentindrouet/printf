@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pct_s.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/16 12:58:50 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/07 09:35:34 by cdrouet          ###   ########.fr       */
+/*   Created: 2016/01/07 09:54:51 by cdrouet           #+#    #+#             */
+/*   Updated: 2016/01/07 11:15:34 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int		main()
+void	pct_s(const char *restrict format, va_list ap)
 {
-	ft_printf(" %+-hhd %d %.10d % d\n", (char)'A', 123, 456, 7);
-	printf(" %+-hhd %d %.10d % d\n", (char)'A', 123, 456, 7);
-	return (0);
+	(void)ap;
+	(void)format;
 }

@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:36:36 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/06 12:00:12 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/07 11:14:36 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,21 @@ char	*aj_plus(char **ptr);
 char	*ft_lltoa(long long nbr);
 int		recur_lltoa(unsigned long long nbr, char *ptr, int index);
 int		ft_printf(const char *restrict format, ...);
-void	pct_d(va_list ap, const char *restrict format);
+void	pct_d(const char *restrict format, va_list ap);
+void	pct_s(const char *restrict format, va_list ap);
+void	pct_gs(const char *restrict format, va_list ap);
+void	pct_p(const char *restrict format, va_list ap);
+void	pct_gd(const char *restrict format, va_list ap);
+void	pct_i(const char *restrict format, va_list ap);
+void	pct_o(const char *restrict format, va_list ap);
+void	pct_go(const char *restrict format, va_list ap);
+void	pct_u(const char *restrict format, va_list ap);
+void	pct_gu(const char *restrict format, va_list ap);
+void	pct_x(const char *restrict format, va_list ap);
+void	pct_gx(const char *restrict format, va_list ap);
+void	pct_c(const char *restrict format, va_list ap);
+void	pct_gc(const char *restrict format, va_list ap);
+void	pct_pct(const char *restrict format, va_list ap);
 char	verif_flag(const char *restrict f);
 int		verif_width(const char *restrict f);
 int		verif_precision(const char *restrict f);

@@ -6,13 +6,13 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:39:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/06 15:38:15 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/07 11:15:12 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	pct_d(va_list ap, const char *restrict format)
+void	pct_d(const char *restrict format, va_list ap)
 {
 	if ((ft_strchr(format, 'h') != NULL)
 		&& (ft_strchr(format, 'h') != ft_strrchr(format, 'h')))
