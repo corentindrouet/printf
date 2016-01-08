@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:54:51 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/07 15:53:15 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/08 07:58:05 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	pct_ss(const char *restrict format, va_list ap)
 	int		i;
 
 	ptr = (char*)va_arg(ap, char*);
-	ft_putstr(ptr);
 	if (ft_strchr(format, '.') != NULL)
 	{
 		i = 0;
