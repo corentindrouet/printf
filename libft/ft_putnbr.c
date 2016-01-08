@@ -6,7 +6,7 @@
 /*   By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 08:47:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/11/27 08:41:31 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/08 11:14:05 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,21 @@ void	ft_putnbr(int n)
 	else
 	{
 		ft_putchar(i + '0');
+	}
+}
+
+void	ft_putnbr_base(unsigned long n, int base)
+{
+	char	*str;
+
+	str = "0123456789abcdef";
+	if (n >= (unsigned long)base)
+	{
+		ft_putnbr_base(n / base, base);
+		ft_putnbr_base(n % base, base);
+	}
+	else
+	{
+		ft_putchar(str[n]);
 	}
 }

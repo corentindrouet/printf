@@ -6,7 +6,7 @@
 #    By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 08:31:45 by cdrouet           #+#    #+#              #
-#    Updated: 2016/01/07 13:48:00 by cdrouet          ###   ########.fr        #
+#    Updated: 2016/01/08 11:48:03 by cdrouet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ SRC = ft_isascii.c \
 	  ft_lstiter.c \
 	  ft_lstmap.c \
 	  ft_putwchar_t.c \
+	  ft_itoa_base.c
 
 BIN = ft_isascii.o \
 	  ft_memchr.o \
@@ -133,6 +134,7 @@ BIN = ft_isascii.o \
 	  ft_lstiter.o \
 	  ft_putwchar_t.o \
 	  ft_lstmap.o \
+	  ft_itoa_base.o
 
 FLAG = -Wall -Wextra -Werror
 

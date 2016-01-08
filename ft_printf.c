@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/08 07:57:59 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/08 10:09:50 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			ft_printf(const char *restrict format, ...)
 		while (ptr[i[1]] != s)
 			i[1]++;
 		f[i[1]](ft_strsub(&format[i[0]], 0,
-			cont_carac((char*)&format[i[0]], s)), ap);
+			cont_carac((char*)&format[i[0]], s) + 1), ap);
 		i[0] += cont_carac((char*)&format[i[0]], s) + 1;
 	}
 	ft_putstr(&format[i[0]]);
