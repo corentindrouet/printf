@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:36:36 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/07 11:14:36 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/11 10:15:51 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # include <unistd.h>
 # include "libft/libft.h"
 
+void	pct_hho(va_list ap, const char *restrict format, int base);
+void	pct_ho(va_list ap, const char *restrict format, int base);
+void	pct_llo(va_list ap, const char *restrict format, int base);
+void	pct_lo(va_list ap, const char *restrict format, int base);
+void	pct_jo(va_list ap, const char *restrict format, int base);
+void	pct_zo(va_list ap, const char *restrict format, int base);
+void	pct_oo(va_list ap, const char *restrict format, int base);
 void	aj_decal_g(int i, const char *restrict format, char *res, char **ptr);
 void	aj_decal_d(int i, char **ptr, char *res, char c);
 char	*aj_zero(char **ptr, const char *restrict format);

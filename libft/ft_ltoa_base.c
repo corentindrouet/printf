@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_ltoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/08 11:32:03 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/11 09:14:55 by cdrouet          ###   ########.fr       */
+/*   Created: 2016/01/11 09:07:53 by cdrouet           #+#    #+#             */
+/*   Updated: 2016/01/11 09:14:54 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	recur_lltoa_b(unsigned long long nb, int base, char *ptr, int index)
+static int	recur_ltoa_b(unsigned long nb, int base, char *ptr, int index)
 {
 	char	*str;
 
 	str = "0123456789abcdef";
-	if (nb >= (unsigned long long)base)	
+	if (nb >= (unsigned long)base)	
 	{
-		index = recur_lltoa_b(nb / base, base, ptr, index);
-		index = recur_lltoa_b(nb % base, base, ptr, index);
+		index = recur_ltoa_b(nb / base, base, ptr, index);
+		index = recur_ltoa_b(nb % base, base, ptr, index);
 	}
 	else
 	{
@@ -30,9 +30,9 @@ static int	recur_lltoa_b(unsigned long long nb, int base, char *ptr, int index)
 	return (index);
 }
 
-char		*ft_lltoa_base(long long nb, int base)
+char		*ft_ltoa_base(long nb, int base)
 {
-	unsigned long long	i;
+	unsigned long	i;
 	char			*ptr;
 	int				index;
 
@@ -44,19 +44,19 @@ char		*ft_lltoa_base(long long nb, int base)
 		ptr[index++] = '-';
 		i = -nb;
 	}
-	recur_lltoa_b(i, base, ptr, index);
+	recur_ltoa_b(i, base, ptr, index);
 	return (ptr);
 }
 
-static int	recur_itoa_b(unsigned int nb, int base, char *ptr, int index)
+static int	recur_stoa_b(unsigned short nb, int base, char *ptr, int index)
 {
 	char	*str;
 
 	str = "0123456789abcdef";
-	if (nb >= (unsigned int)base)
+	if (nb >= (unsigned short)base)	
 	{
-		index = recur_itoa_b(nb / base, base, ptr, index);
-		index = recur_itoa_b(nb % base, base, ptr, index);
+		index = recur_stoa_b(nb / base, base, ptr, index);
+		index = recur_stoa_b(nb % base, base, ptr, index);
 	}
 	else
 	{
@@ -66,9 +66,9 @@ static int	recur_itoa_b(unsigned int nb, int base, char *ptr, int index)
 	return (index);
 }
 
-char		*ft_itoa_base(int nb, int base)
+char		*ft_stoa_base(short nb, int base)
 {
-	unsigned int	i;
+	unsigned short	i;
 	char			*ptr;
 	int				index;
 
@@ -80,6 +80,6 @@ char		*ft_itoa_base(int nb, int base)
 		ptr[index++] = '-';
 		i = -nb;
 	}
-	recur_itoa_b(i, base, ptr, index);
+	recur_stoa_b(i, base, ptr, index);
 	return (ptr);
 }

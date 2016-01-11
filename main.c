@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:58:50 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/08 15:49:29 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/11 10:19:08 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ int		main()
 {
 //	int	i;
 
-//	printf("%o\n", 2147483647);
-//	ft_printf("%o\n", -99);
-//	ft_putstr(ft_itoa_base(2147483647, 8));
-	printf("uint : %d\nuchar : %d\nushort : %d\nulong : %d\nulong long : %d\nuintmax_t : %d\nsize_t : %d\n", (int)sizeof(unsigned int), (int)sizeof(unsigned char), (int)sizeof(unsigned short), (int)sizeof(unsigned long), (int)sizeof(unsigned long long), (int)sizeof(uintmax_t), (int)sizeof(size_t));
+	printf("%50u\n", 345678);
+	ft_printf("%50u\n", 345678);
+//	ft_putstr(ft_ctoa_base(230, 8));
 	return (0);
 }

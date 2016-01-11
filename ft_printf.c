@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/08 10:09:50 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/11 10:05:54 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int			ft_printf(const char *restrict format, ...)
 		write(1, &format[i[0]], i[1]);
 		i[0] += i[1];
 		i[1] = -1;
-		s = 'd';
+		s = '\0';
 		while (++i[1] < 15)
-			if (cont_carac((char*)&format[i[0]], ptr[i[1]]) >= 0)
-				if ((cont_carac((char*)&format[i[0]], s) <
-					cont_carac((char*)&format[i[0]], ptr[i[1]])))
+			if (cont_carac((char*)&format[i[0] + 1], ptr[i[1]]) >= 0)
+				if ((cont_carac((char*)&format[i[0] + 1], s) >
+					cont_carac((char*)&format[i[0] + 1], ptr[i[1]])))
 				s = ptr[i[1]];
 		i[1] = 0;
 		while (ptr[i[1]] != s)
@@ -61,6 +61,8 @@ int			ft_printf(const char *restrict format, ...)
 		f[i[1]](ft_strsub(&format[i[0]], 0,
 			cont_carac((char*)&format[i[0]], s) + 1), ap);
 		i[0] += cont_carac((char*)&format[i[0]], s) + 1;
+		if (s == '%')
+			i[0]++;
 	}
 	ft_putstr(&format[i[0]]);
 	va_end(ap);
