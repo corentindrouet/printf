@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:58:50 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/11 10:19:08 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/11 14:52:29 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 int		main()
 {
 //	int	i;
-
-	printf("%50u\n", 345678);
-	ft_printf("%50u\n", 345678);
+	wchar_t text[50] = L"Salut G\x82rard";
+	printf("%ls\n", text);
+//	ft_printf("%.0o\n", 'o');
 //	ft_putstr(ft_ctoa_base(230, 8));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 11:32:03 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/11 09:14:55 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/11 11:42:39 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	recur_lltoa_b(unsigned long long nb, int base, char *ptr, int index)
 	char	*str;
 
 	str = "0123456789abcdef";
-	if (nb >= (unsigned long long)base)	
+	if (nb >= (unsigned long long)base)
 	{
 		index = recur_lltoa_b(nb / base, base, ptr, index);
 		index = recur_lltoa_b(nb % base, base, ptr, index);
@@ -33,8 +33,8 @@ static int	recur_lltoa_b(unsigned long long nb, int base, char *ptr, int index)
 char		*ft_lltoa_base(long long nb, int base)
 {
 	unsigned long long	i;
-	char			*ptr;
-	int				index;
+	char				*ptr;
+	int					index;
 
 	i = nb;
 	ptr = ft_strnew(20);

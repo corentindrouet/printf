@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 10:23:01 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/08 10:02:12 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/11 11:44:13 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	pct_cc(const char *restrict format, va_list ap)
 		ft_putstr(str);
 	}
 	else
-		ft_putchar(ptr);	
+		ft_putchar(ptr);
 }
 
 void		pct_c(const char *restrict format, va_list ap)

@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:12:39 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/11 09:54:28 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/11 11:43:25 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	recur_ctoa_b(unsigned char nb, int base, char *ptr, int index)
 	char	*str;
 
 	str = "0123456789abcdef";
-	if (nb >= (unsigned char)base)	
+	if (nb >= (unsigned char)base)
 	{
 		index = recur_ctoa_b(nb / base, base, ptr, index);
 		index = recur_ctoa_b(nb % base, base, ptr, index);
