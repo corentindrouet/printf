@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 10:19:04 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/07 11:20:11 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/12 10:38:32 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 void	pct_go(const char *restrict format, va_list ap)
 {
-	(void)ap;
-	(void)format;
+	pct_lo(ap, format, 8, 0);
 }

@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 10:15:33 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/12 08:14:08 by cdrouet          ###   ########.fr       */
+/*   Created: 2015/11/25 15:20:16 by cdrouet           #+#    #+#             */
+/*   Updated: 2016/01/07 15:05:27 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+#include "libft.h"
+
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
+	char			*ptr;
+	unsigned int	compt;
+
+	ptr = (char*)malloc(sizeof(char) * (len + 1));
+	if (ptr)
+	{
+		compt = start;
+		while (compt < (start + len))
+		{
+			ptr[compt - start] = s[compt];
+			compt++;
+		}
+		ptr[compt - start] = '\0';
+	}
+	return (ptr);
 }

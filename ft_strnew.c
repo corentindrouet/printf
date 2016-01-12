@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 10:15:33 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/12 08:14:08 by cdrouet          ###   ########.fr       */
+/*   Created: 2015/11/25 11:52:09 by cdrouet           #+#    #+#             */
+/*   Updated: 2015/11/27 16:30:22 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+#include "libft.h"
+
+char	*ft_strnew(size_t size)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
+	char	*str;
+	size_t	i;
+
+	str = (char*)malloc(size);
+	if (!str)
+		return (NULL);
+	i = -1;
+	while (++i < size)
+		str[i] = '\0';
+	return (str);
 }

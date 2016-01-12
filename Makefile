@@ -6,11 +6,13 @@
 #    By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/04 13:04:33 by cdrouet           #+#    #+#              #
-#    Updated: 2016/01/11 09:49:22 by cdrouet          ###   ########.fr        #
+#    Updated: 2016/01/12 15:07:07 by cdrouet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
+
+LIB = libft/
 
 SRC = ft_printf.c \
 	  pct_d.c \
@@ -31,31 +33,29 @@ SRC = ft_printf.c \
 	  pct_gx.c \
 	  pct_c.c \
 	  pct_gc.c \
+	  ft_atoi.c \
+	  ft_ctoa_base.c \
+	  ft_isdigit.c \
+	  ft_itoa.c \
+	  ft_itoa_base.c \
+	  ft_ltoa_base.c \
+	  ft_putchar.c \
+	  ft_putstr.c \
+	  ft_strchr.c \
+	  ft_strcpy.c \
+	  ft_strjoin.c \
+	  ft_strlen.c \
+	  ft_strnew.c \
+	  ft_strrchr.c \
+	  ft_strsub.c \
+	  ft_toupper.c \
+	  ft_strcat.c
 
-BIN = ft_printf.o \
-	  pct_d.o \
-	  pct_d2.o \
-	  spec_f.o \
-	  pct_d3.o \
-	  pct_s.o \
-	  pct_gs.o \
-	  pct_p.o \
-	  pct_gd.o \
-	  pct_i.o \
-	  pct_o.o \
-	  pct_o2.o \
-	  pct_go.o \
-	  pct_u.o \
-	  pct_gu.o \
-	  pct_x.o \
-	  pct_gx.o \
-	  pct_c.o \
-	  pct_gc.o \
+BIN = $(SRC:.c=.o)
 
 FLAG = -Wall -Wextra -Werror
 
 $(NAME) :
-	make -C libft/ ;
 	gcc $(FLAG) -c $(SRC) ;
 	ar rc $(NAME) $(BIN) ; ranlib $(NAME)
 
