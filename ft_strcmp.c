@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 08:55:09 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 14:25:38 by cdrouet          ###   ########.fr       */
+/*   Created: 2015/11/24 16:53:34 by cdrouet           #+#    #+#             */
+/*   Updated: 2016/01/13 14:26:07 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+static int	ftmemcmp(const void *s1, const void *s2, size_t n)
 {
 	const unsigned char	*src1;
 	const unsigned char	*src2;
@@ -25,4 +25,9 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		if (src1[i] != src2[i])
 			return (src1[i] - src2[i]);
 	return (0);
+}
+
+int			ft_strcmp(const char *s1, const char *s2)
+{
+	return (ftmemcmp((void*)s1, (void*)s2, ft_strlen(s2) + 1));
 }
