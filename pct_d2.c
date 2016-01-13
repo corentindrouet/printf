@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 08:07:33 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/13 10:55:24 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,15 @@ char	*aj_plus(char **ptr)
 	char	*res;
 	int		i;
 
-	if ((*ptr)[0] == '0')
+	i = -1;
+	while ((*ptr)[++i])
 	{
-		(*ptr)[0] = '+';
-		return (*ptr);
-	}
-	if ((*ptr)[0] == ' ')
-	{
-		i = 0;
-		while ((*ptr)[i] == ' ')
-			i++;
-		(*ptr)[i - 1] = '+';
-		return (*ptr);
-	}
+		if ((*ptr)[i] == '0')
+		{
+			(*ptr)[i] = '+';
+			return (*ptr);
+		}
+	}	
 	res = (char*)malloc(ft_strlen(*ptr) + 2);
 	i = ft_strlen(*ptr) - 1;
 	res[i + 2] = '\0';

@@ -6,17 +6,50 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 14:01:57 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/11 12:51:24 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/13 10:45:10 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static char	*aj_zero_pos(char **ptr, const char *restrict format, int i)
+{
+	char	*res;
+	int		l;
+
+	l = 0;
+	if (i <= (int)ft_strlen(*ptr))
+		return (*ptr);
+	if (ft_strchr(format, '+') != NULL)
+		i++;
+	res = (char*)ft_strnew(sizeof(char) * (i + 1));
+	while (l < (i - (int)ft_strlen(*ptr)))
+		res[l++] = '0';
+	ft_strcpy(&res[l], *ptr);
+	free(*ptr);
+	return (res);
+}
+
+static char	*aj_zero_neg(char **ptr, int i)
+{
+	char	*res;
+	int		l;
+
+	l = 0;
+	if (i < (int)ft_strlen(*ptr))
+		return (*ptr);
+	res = (char*)ft_strnew(sizeof(char) * (i + 2));
+	res[l++] = '-';
+	while (l <= (i - (int)ft_strlen(*ptr) + 1))
+		res[l++] = '0';
+	ft_strcpy(&res[l], &(*ptr)[1]);
+	free(*ptr);
+	return (res);
+}
+
 char	*aj_zero(char **ptr, const char *restrict format)
 {
-	int		len;
 	int		i;
-	char	*res;
 
 	i = -1;
 	while (format[++i] != '.')
@@ -25,19 +58,10 @@ char	*aj_zero(char **ptr, const char *restrict format)
 	i = ft_atoi(&format[++i]);
 	if (i == 0 && ft_atoi(*ptr) == 0)
 		(*ptr)[0] = '\0';
-	if (i <= (int)ft_strlen(*ptr))
-		return (*ptr);
-	if (ft_strchr(format, '+') != NULL)
-		i++;
-	res = (char*)malloc(sizeof(char) * (i + 1));
-	res[i] = '\0';
-	len = i - (int)ft_strlen(*ptr);
-	while (len > 0)
-		res[--len] = '0';
-	len = i - (int)ft_strlen(*ptr);
-	ft_strcpy(&res[len], *ptr);
-	free(*ptr);
-	return (res);
+	if (ft_atoi(*ptr) < 0)
+		return (aj_zero_neg(ptr, i));
+	else
+		return (aj_zero_pos(ptr, format, i));
 }
 
 void	aj_decal_d(int i, char **ptr, char *res, char c)
