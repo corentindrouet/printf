@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 14:01:57 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 10:45:10 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/13 11:22:32 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,15 @@ static char	*aj_zero_neg(char **ptr, int i)
 {
 	char	*res;
 	int		l;
-
+	int		len;
+	
 	l = 0;
-	if (i < (int)ft_strlen(*ptr))
+	len = (int)ft_strlen(*ptr);
+	if (i < len)
 		return (*ptr);
 	res = (char*)ft_strnew(sizeof(char) * (i + 2));
 	res[l++] = '-';
-	while (l <= (i - (int)ft_strlen(*ptr) + 1))
+	while (l <= ((i + 1) - len))
 		res[l++] = '0';
 	ft_strcpy(&res[l], &(*ptr)[1]);
 	free(*ptr);
