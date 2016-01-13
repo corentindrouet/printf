@@ -6,13 +6,13 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 13:35:24 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/04 14:21:51 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/13 09:32:01 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_lltoa(long long nbr)
+char		*ft_lltoa(long long nbr)
 {
 	char				*ptr;
 	unsigned long long	i;
@@ -32,7 +32,7 @@ char	*ft_lltoa(long long nbr)
 	return (ptr);
 }
 
-int		recur_lltoa(unsigned long long nbr, char *ptr, int index)
+int			recur_lltoa(unsigned long long nbr, char *ptr, int index)
 {
 	if (nbr >= 10)
 	{
@@ -46,4 +46,31 @@ int		recur_lltoa(unsigned long long nbr, char *ptr, int index)
 		return (index + 1);
 	}
 	return (index);
+}
+
+static int	recur_uitoa_b(unsigned int nbr, int base, char *ptr, int index)
+{
+	char	*str;
+
+	str = "0123456789abcdef";
+	if (nbr >= (unsigned int)base)
+	{
+		index = recur_uitoa_b(nbr / base, base, ptr, index);
+		index = recur_uitoa_b(nbr % base, base, ptr, index);
+	}
+	else
+	{
+		ptr[index] = str[nbr];
+		index++;
+	}
+	return (index);
+}
+
+char		*ft_uitoa_base(unsigned int nbr, int base)
+{
+	char	*ptr;
+
+	ptr = ft_strnew(20);
+	recur_uitoa_b(nbr, base, ptr, 0);
+	return (ptr);
 }

@@ -6,13 +6,13 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 10:23:01 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/11 11:44:13 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/13 08:25:45 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	pct_cc(const char *restrict format, va_list ap)
+static int	pct_cc(const char *restrict format, va_list ap)
 {
 	char	ptr;
 	char	*str;
@@ -28,13 +28,15 @@ static void	pct_cc(const char *restrict format, va_list ap)
 		str[0] = ptr;
 		str = aj_decal(&str, format);
 		ft_putstr(str);
+		return (ft_strlen(str));
 	}
-	else
-		ft_putchar(ptr);
+	ft_putchar(ptr);
+	return (1);
 }
 
-void		pct_c(const char *restrict format, va_list ap)
+int			pct_c(const char *restrict format, va_list ap)
 {
 	if (ft_strchr(format, 'l') == NULL)
-		pct_cc(format, ap);
+		return (pct_cc(format, ap));
+	return (0);
 }

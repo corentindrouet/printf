@@ -6,13 +6,13 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/06 13:10:39 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/13 08:07:33 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	pct_jd(va_list ap, const char *restrict format)
+int		pct_jd(va_list ap, const char *restrict format)
 {
 	intmax_t	i;
 	char		*res;
@@ -27,9 +27,10 @@ void	pct_jd(va_list ap, const char *restrict format)
 		&& (ft_strchr(format, ' ') != NULL))
 		ft_putchar(' ');
 	ft_putstr(res);
+	return (ft_strlen(res));
 }
 
-void	pct_zd(va_list ap, const char *restrict format)
+int		pct_zd(va_list ap, const char *restrict format)
 {
 	ssize_t	i;
 	char	*res;
@@ -44,9 +45,10 @@ void	pct_zd(va_list ap, const char *restrict format)
 		&& (ft_strchr(format, ' ') != NULL))
 		ft_putchar(' ');
 	ft_putstr(res);
+	return (ft_strlen(res));
 }
 
-void	pct_dd(va_list ap, const char *restrict format)
+int		pct_dd(va_list ap, const char *restrict format)
 {
 	int		i;
 	char	*res;
@@ -61,6 +63,7 @@ void	pct_dd(va_list ap, const char *restrict format)
 		&& (ft_strchr(format, ' ') != NULL))
 		ft_putchar(' ');
 	ft_putstr(res);
+	return (ft_strlen(res));
 }
 
 char	*aj_plus(char **ptr)

@@ -6,13 +6,13 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/11 10:05:54 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/13 08:28:14 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	f_init(void (**f)(const char *restrict, va_list))
+static void		f_init(int (**f)(const char *restrict, va_list))
 {
 	f[0] = &pct_s;
 	f[1] = &pct_gs;
@@ -34,19 +34,21 @@ static void	f_init(void (**f)(const char *restrict, va_list))
 int			ft_printf(const char *restrict format, ...)
 {
 	va_list	ap;
-	int		i[2];
+	int		i[3];
 	int		s;
 	char	*ptr;
-	void	(*f[15])(const char *restrict, va_list);
+	int		(*f[15])(const char *restrict, va_list);
 
 	f_init(f);
 	ptr = "sSpdDioOuUxXcC%";
 	i[0] = 0;
 	i[1] = 0;
+	i[2] = 0;
 	va_start(ap, format);
 	while (((i[1] = cont_carac((char*)&format[i[0]], '%')) >= 0))
 	{
 		write(1, &format[i[0]], i[1]);
+		i[2] += i[1];
 		i[0] += i[1];
 		i[1] = -1;
 		s = '\0';
@@ -58,15 +60,16 @@ int			ft_printf(const char *restrict format, ...)
 		i[1] = 0;
 		while (ptr[i[1]] != s)
 			i[1]++;
-		f[i[1]](ft_strsub(&format[i[0]], 0,
+		i[2] += f[i[1]](ft_strsub(&format[i[0]], 0,
 			cont_carac((char*)&format[i[0]], s) + 1), ap);
 		i[0] += cont_carac((char*)&format[i[0]], s) + 1;
 		if (s == '%')
 			i[0]++;
 	}
+	i[2] += ft_strlen(&format[i[0]]);
 	ft_putstr(&format[i[0]]);
 	va_end(ap);
-	return (1);
+	return (i[2]);
 }
 
 int			cont_carac(char *s, char c)
@@ -80,9 +83,10 @@ int			cont_carac(char *s, char c)
 	return (i);
 }
 
-void		pct_pct(const char *restrict format, va_list ap)
+int			pct_pct(const char *restrict format, va_list ap)
 {
 	(void)ap;
 	(void)format;
 	ft_putchar('%');
+	return (1);
 }

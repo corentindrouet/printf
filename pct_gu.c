@@ -6,13 +6,13 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 10:20:04 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/12 10:40:41 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/13 08:17:30 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	pct_gu(const char *restrict format, va_list ap)
+int		pct_gu(const char *restrict format, va_list ap)
 {
-	pct_lo(ap, format, 10, 0);
+	return (pct_lo(ap, format, 10, 0));
 }

@@ -6,33 +6,33 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:39:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/11 09:26:47 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/13 08:06:18 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	pct_d(const char *restrict format, va_list ap)
+int		pct_d(const char *restrict format, va_list ap)
 {
 	if ((ft_strchr(format, 'h') != NULL)
 		&& (ft_strchr(format, 'h') != ft_strrchr(format, 'h')))
-		pct_hhd(ap, format);
+		return (pct_hhd(ap, format));
 	else if (ft_strchr(format, 'h') != NULL)
-		pct_hd(ap, format);
+		return (pct_hd(ap, format));
 	else if ((ft_strchr(format, 'l') != NULL)
 		&& (ft_strchr(format, 'l') != ft_strrchr(format, 'l')))
-		pct_lld(ap, format);
+		return (pct_lld(ap, format));
 	else if (ft_strchr(format, 'l'))
-		pct_ld(ap, format);
+		return (pct_ld(ap, format));
 	else if (ft_strchr(format, 'j'))
-		pct_jd(ap, format);
+		return (pct_jd(ap, format));
 	else if (ft_strchr(format, 'z'))
-		pct_zd(ap, format);
+		return (pct_zd(ap, format));
 	else
-		pct_dd(ap, format);
+		return (pct_dd(ap, format));
 }
 
-void	pct_hhd(va_list ap, const char *restrict format)
+int		pct_hhd(va_list ap, const char *restrict format)
 {
 	signed char	ptr;
 	int			convert;
@@ -49,9 +49,10 @@ void	pct_hhd(va_list ap, const char *restrict format)
 		&& (ft_strchr(format, ' ') != NULL))
 		ft_putchar(' ');
 	ft_putstr(res);
+	return (ft_strlen(res));
 }
 
-void	pct_hd(va_list ap, const char *restrict format)
+int		pct_hd(va_list ap, const char *restrict format)
 {
 	short	i;
 	char	*res;
@@ -66,9 +67,10 @@ void	pct_hd(va_list ap, const char *restrict format)
 		&& (ft_strchr(format, ' ') != NULL))
 		ft_putchar(' ');
 	ft_putstr(res);
+	return (ft_strlen(res));
 }
 
-void	pct_ld(va_list ap, const char *restrict format)
+int		pct_ld(va_list ap, const char *restrict format)
 {
 	long	i;
 	char	*res;
@@ -83,9 +85,10 @@ void	pct_ld(va_list ap, const char *restrict format)
 		&& (ft_strchr(format, ' ') != NULL))
 		ft_putchar(' ');
 	ft_putstr(res);
+	return (ft_strlen(res));
 }
 
-void	pct_lld(va_list ap, const char *restrict format)
+int		pct_lld(va_list ap, const char *restrict format)
 {
 	long long	i;
 	char		*res;
@@ -100,4 +103,5 @@ void	pct_lld(va_list ap, const char *restrict format)
 		&& (ft_strchr(format, ' ') != NULL))
 		ft_putchar(' ');
 	ft_putstr(res);
+	return (ft_strlen(res));
 }

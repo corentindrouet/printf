@@ -6,18 +6,20 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:54:51 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/08 07:58:05 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/13 08:50:10 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	pct_ss(const char *restrict format, va_list ap)
+static int	pct_ss(const char *restrict format, va_list ap)
 {
 	char	*ptr;
 	int		i;
 
 	ptr = (char*)va_arg(ap, char*);
+	if (ptr == NULL)
+		ptr = "(null)";
 	if (ft_strchr(format, '.') != NULL)
 	{
 		i = 0;
@@ -28,18 +30,20 @@ static void	pct_ss(const char *restrict format, va_list ap)
 	}
 	ptr = aj_decal(&ptr, format);
 	ft_putstr(ptr);
+	return (ft_strlen(ptr));
 }
 
-static void	pct_ls(const char *restrict format, va_list ap)
+static int	pct_ls(const char *restrict format, va_list ap)
 {
 	(void)format;
 	(void)ap;
+	return (0);
 }
 
-void		pct_s(const char *restrict format, va_list ap)
+int			pct_s(const char *restrict format, va_list ap)
 {
 	if (ft_strchr(format, 'l') != NULL)
-		pct_ls(format, ap);
+		return (pct_ls(format, ap));
 	else
-		pct_ss(format, ap);
+		return (pct_ss(format, ap));
 }
