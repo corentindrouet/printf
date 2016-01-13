@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 08:28:14 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/13 13:48:21 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ static void		f_init(int (**f)(const char *restrict, va_list))
 	f[12] = &pct_c;
 	f[13] = &pct_gc;
 	f[14] = &pct_pct;
+}
+
+static int	verif_flag(const char *restrict format)
+{
+	char	*str;
+	
+	str = ft_strcpy(str, format);
+
 }
 
 int			ft_printf(const char *restrict format, ...)
@@ -58,16 +66,21 @@ int			ft_printf(const char *restrict format, ...)
 					cont_carac((char*)&format[i[0] + 1], ptr[i[1]])))
 				s = ptr[i[1]];
 		i[1] = 0;
-		while (ptr[i[1]] != s)
+		while (ptr[i[1]] != s && ptr[i[1]])
 			i[1]++;
-		i[2] += f[i[1]](ft_strsub(&format[i[0]], 0,
-			cont_carac((char*)&format[i[0]], s) + 1), ap);
-		i[0] += cont_carac((char*)&format[i[0]], s) + 1;
-		if (s == '%')
+		if (i[1] != 15)
+		{
+			i[2] += f[i[1]](ft_strsub(&format[i[0]], 0,
+				cont_carac((char*)&format[i[0]], s) + 1), ap);
+			i[0] += cont_carac((char*)&format[i[0]], s) + 1;
+			if (s == '%')
+				i[0]++;
+		}
+		else
 			i[0]++;
 	}
 	i[2] += ft_strlen(&format[i[0]]);
-	ft_putstr(&format[i[0]]);
+	//ft_putstr(&format[i[0]]);
 	va_end(ap);
 	return (i[2]);
 }

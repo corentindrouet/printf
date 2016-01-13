@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 11:25:24 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/13 13:06:41 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		pct_dd(va_list ap, const char *restrict format)
 	char	*res;
 
 	i = va_arg(ap, int);
-	res = ft_itoa_base(i, 10);
+	res = ft_itoa(i);
 	res = aj_zero(&res, format);
 	res = aj_decal(&res, format);
 	if (i > 0 && (ft_strchr(format, '+') != NULL))
