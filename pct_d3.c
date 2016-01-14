@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 14:01:57 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 11:22:32 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/14 14:54:24 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ char	*aj_zero(char **ptr, const char *restrict format)
 
 void	aj_decal_d(int i, char **ptr, char *res, char c)
 {
-	int	j;
+	char	*s;
+	int		j;
 
 	j = ft_strlen(*ptr);
 	j--;
@@ -76,6 +77,18 @@ void	aj_decal_d(int i, char **ptr, char *res, char c)
 		res[i--] = (*ptr)[j--];
 	while (i >= 0)
 		res[i--] = c;
+	s = ft_strchr(res, '-');
+	if (s != NULL)
+	{
+		s[0] = c;
+		j = 0;
+		while (res[j] == ' ')
+			j++;
+		if (j > 0)
+			res[j - 1] = '-';
+		else
+			res[j] = '-';
+	}
 }
 
 void	aj_decal_g(int i, const char *restrict format, char *res, char **ptr)

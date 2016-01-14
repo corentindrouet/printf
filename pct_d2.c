@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 13:06:41 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/14 15:18:48 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int		pct_jd(va_list ap, const char *restrict format)
 	res = ft_lltoa((long long)i);
 	res = aj_zero(&res, format);
 	res = aj_decal(&res, format);
-	if (i > 0 && (ft_strchr(format, '+') != NULL))
+	if (i >= 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
 	else if (i > 0 && (ft_strchr(format, '+') == NULL)
 		&& (ft_strchr(format, ' ') != NULL))
-		ft_putchar(' ');
+		res = ft_strjoin(" ", res);
 	ft_putstr(res);
 	return (ft_strlen(res));
 }
@@ -39,11 +39,11 @@ int		pct_zd(va_list ap, const char *restrict format)
 	res = ft_lltoa((long long)i);
 	res = aj_zero(&res, format);
 	res = aj_decal(&res, format);
-	if (i > 0 && (ft_strchr(format, '+') != NULL))
+	if (i >= 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
 	else if (i > 0 && (ft_strchr(format, '+') == NULL)
 		&& (ft_strchr(format, ' ') != NULL))
-		ft_putchar(' ');
+		res = ft_strjoin(" ", res);
 	ft_putstr(res);
 	return (ft_strlen(res));
 }
@@ -57,11 +57,11 @@ int		pct_dd(va_list ap, const char *restrict format)
 	res = ft_itoa(i);
 	res = aj_zero(&res, format);
 	res = aj_decal(&res, format);
-	if (i > 0 && (ft_strchr(format, '+') != NULL))
+	if (i >= 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
 	else if (i > 0 && (ft_strchr(format, '+') == NULL)
 		&& (ft_strchr(format, ' ') != NULL))
-		ft_putchar(' ');
+		res = ft_strjoin(" ", res);
 	ft_putstr(res);
 	return (ft_strlen(res));
 }

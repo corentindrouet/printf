@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 10:23:01 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/14 08:58:06 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/14 14:29:50 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,13 @@ static int	pct_cc(const char *restrict format, va_list ap)
 		str = ft_strnew(2);
 		str[0] = ptr;
 		str = aj_decal(&str, format);
-		ft_putstr(str);
+		if (ptr == 0)
+		{
+			ft_putstr(&str[1]);
+			ft_putchar('\0');
+		}
+		else
+			ft_putstr(str);
 		return (ft_strlen(str));
 	}
 	ft_putchar(ptr);

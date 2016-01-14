@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 09:59:37 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/14 11:04:37 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/14 15:01:02 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ char		*ft_diese(const char *restrict format, char **ptr, int base, int maj)
 	char	*res;
 
 	res = *ptr;
+	if (ft_atoi(*ptr) == 0)
+		return (*ptr);
 	if (base == 8)
 		res = ft_diese_o(ptr);
 	else if (base == 16 && maj == 0)
