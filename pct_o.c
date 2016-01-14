@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:58:40 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 09:34:44 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/14 10:46:38 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int		pct_hho(va_list ap, const char *restrict format, int base, int maj)
 	res = aj_decal(&res, format);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
+	if (ft_strchr(format, '#') != NULL)
+		res = ft_diese(format, &res, base, maj);
 	ft_putstr(res);
 	return (ft_strlen(res));
 }
@@ -58,6 +60,8 @@ int		pct_ho(va_list ap, const char *restrict format, int base, int maj)
 	res = aj_decal(&res, format);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
+	if (ft_strchr(format, '#') != NULL)
+		res = ft_diese(format, &res, base, maj);
 	ft_putstr(res);
 	return (ft_strlen(res));
 }
@@ -73,6 +77,8 @@ int		pct_llo(va_list ap, const char *restrict format, int base, int maj)
 	res = aj_decal(&res, format);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
+	if (ft_strchr(format, '#') != NULL)
+		res = ft_diese(format, &res, base, maj);
 	ft_putstr(res);
 	return (ft_strlen(res));
 }
@@ -88,6 +94,8 @@ int		pct_lo(va_list ap, const char *restrict format, int base, int maj)
 	res = aj_decal(&res, format);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
+	if (ft_strchr(format, '#') != NULL)
+		res = ft_diese(format, &res, base, maj);
 	ft_putstr(res);
 	return (ft_strlen(res));
 }

@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 15:52:33 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/14 10:53:54 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,27 @@ static void		f_init(int (**f)(const char *reformatict, va_list))
 	f[14] = &pct_pct;
 }
 
-static char	*verif_flag(const char *reformatict format, int s)
+static int	verif_flag(const char *restrict format, int s)
 {
 	int		i;
 
 	i = -1;
 	while (format[++i] && format[i] != s)
-		if (format[i] != '+' || format[i] != '-' || !(format[i] >= '0' && format[i] <= '9') || format[i] != ' '
-			|| format[i] != 'h' || format[i] != 'l' || format[i] != 'j' || format[i] != 'z' || format[i] != '%' || format[i] != '.')
-			return (&format[i])
+		if (format[i] != '+' && format[i] != '-' && !(format[i] >= '0'
+			&& format[i] <= '9') && format[i] != ' ' && format[i] != '#'
+				&& format[i] != 'h' && format[i] != 'l' && format[i] != 'j'
+					&& format[i] != 'z' && format[i] != '%' && format[i] != '.')
+			return (i);
+	return (-1);
 }
 
-int			ft_printf(const char *reformatict format, ...)
+int			ft_printf(const char *restrict format, ...)
 {
 	va_list	ap;
 	int		i[3];
 	int		s;
 	char	*ptr;
-	int		(*f[15])(const char *reformatict, va_list);
+	int		(*f[15])(const char *restrict, va_list);
 
 	f_init(f);
 	ptr = "sSpdDioOuUxXcC%";
@@ -72,19 +75,21 @@ int			ft_printf(const char *reformatict format, ...)
 		i[1] = 0;
 		while (ptr[i[1]] != s && ptr[i[1]])
 			i[1]++;
-		if (i[1] != 15 && !verif_flag(ft_formatsub(&format[i[0]], 0, cont_carac((char*)&format[i[0]], s)), s))
+		if (i[1] != 15 && (verif_flag(ft_strsub(&format[i[0] + 1], 0, cont_carac((char*)&format[i[0]], s) + 1), s) == -1))
 		{
-			i[2] += f[i[1]](ft_formatsub(&format[i[0]], 0,
+			i[2] += f[i[1]](ft_strsub(&format[i[0]], 0,
 				cont_carac((char*)&format[i[0]], s) + 1), ap);
 			i[0] += cont_carac((char*)&format[i[0]], s) + 1;
 			if (s == '%')
 				i[0]++;
 		}
-		else
+		else if (i[1] == 15)
 			i[0]++;
+		else if (verif_flag(ft_strsub(&format[i[0] + 1], 0, cont_carac((char*)&format[i[0]], s) + 1), s) != -1)
+			i[0] += verif_flag(ft_strsub(&format[i[0] + 1], 0, cont_carac((char*)&format[i[0]], s) + 1), s) + 1;
 	}
-	i[2] += ft_formatlen(&format[i[0]]);
-	ft_putformat(&format[i[0]]);
+	i[2] += ft_strlen(&format[i[0]]);
+	ft_putstr(&format[i[0]]);
 	va_end(ap);
 	return (i[2]);
 }
@@ -100,7 +105,7 @@ int			cont_carac(char *s, char c)
 	return (i);
 }
 
-int			pct_pct(const char *reformatict format, va_list ap)
+int			pct_pct(const char *restrict format, va_list ap)
 {
 	(void)ap;
 	(void)format;
