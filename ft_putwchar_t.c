@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pct_gc.c                                           :+:      :+:    :+:   */
+/*   ft_putwchar_t.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/07 09:56:24 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/18 13:31:39 by cdrouet          ###   ########.fr       */
+/*   Created: 2016/01/07 13:49:05 by cdrouet           #+#    #+#             */
+/*   Updated: 2016/01/18 14:57:22 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		pct_gc(const char *restrict format, va_list ap)
+void	ft_putwchar_t(wchar_t *str)
 {
-	return (pct_lc(format, ap));
+	write(1, str, sizeof(str));
 }
