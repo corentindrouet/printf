@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/14 14:21:43 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/18 09:14:27 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,10 @@ int			ft_printf(const char *restrict format, ...)
 		{
 			i[2] += f[i[1]](ft_strsub(&format[i[0]], 0,
 				cont_carac((char*)&format[i[0]], s) + 1), ap);
-			i[0] += cont_carac((char*)&format[i[0]], s) + 1;
 			if (s == '%')
 				i[0]++;
+			i[0] += cont_carac((char*)&format[i[0]], s) + 1;
 		}
-		/*else if (i[1] == 15)
-			i[0]++;*/
 		else if (verif_flag(ft_strsub(&format[i[0] + 1], 0, cont_carac((char*)&format[i[0]], s) + 1), s, 0) != -1 || i[1] == 15)
 		{
 			i[2] += verif_flag(ft_strsub(&format[i[0] + 1], 0, cont_carac((char*)&format[i[0]], s) + 1), s, 1);

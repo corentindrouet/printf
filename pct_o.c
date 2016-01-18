@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:58:40 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/14 10:46:38 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/18 08:34:50 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ int		pct_lo(va_list ap, const char *restrict format, int base, int maj)
 
 	ptr = (unsigned long)va_arg(ap, unsigned long);
 	res = ft_ultoa_base((unsigned long)ptr, base);
-	res = aj_zero(&res, format);
+	if (ft_strchr(format, '#') == NULL)
+		res = aj_zero(&res, format);
 	res = aj_decal(&res, format);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);

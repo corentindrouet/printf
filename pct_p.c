@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:56:50 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 08:58:50 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/18 09:12:48 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int		pct_p(const char *restrict format, va_list ap)
 
 	ptr = (void*)va_arg(ap, void*);
 
-	res = "0x";
+	res = ft_strnew(1);
 	res = ft_strjoin(res, ft_lltoa_base((long long)ptr, 16));
+	res = aj_zero(&res, format);
+	res = ft_strjoin("0x", res);
 	res = aj_decal(&res, format);
 	ft_putstr(res);
 	return (ft_strlen(res));
