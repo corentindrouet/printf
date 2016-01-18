@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:42:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/14 10:46:56 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/18 10:03:26 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int		pct_jo(va_list ap, const char *restrict format, int base, int maj)
 
 	ptr = (intmax_t)va_arg(ap, intmax_t);
 	res = ft_ulltoa_base((long long)ptr, base);
-	res = aj_zero(&res, format);
+	if (!(ft_strchr(format, '#') && ptr == 0) || base == 16)
+		res = aj_zero(&res, format);
 	res = aj_decal(&res, format);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
@@ -36,7 +37,8 @@ int		pct_zo(va_list ap, const char *restrict format, int base, int maj)
 
 	ptr = (size_t)va_arg(ap, size_t);
 	res = ft_ulltoa_base((long long)ptr, base);
-	res = aj_zero(&res, format);
+	if (!(ft_strchr(format, '#') && ptr == 0) || base == 16)
+		res = aj_zero(&res, format);
 	res = aj_decal(&res, format);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
@@ -53,7 +55,8 @@ int		pct_oo(va_list ap, const char *restrict format, int base, int maj)
 
 	ptr = (unsigned int)va_arg(ap, unsigned int);
 	res = ft_uitoa_base((unsigned int)ptr, base);
-	res = aj_zero(&res, format);
+	if (!(ft_strchr(format, '#') && ptr == 0) || base == 16)
+		res = aj_zero(&res, format);
 	res = aj_decal(&res, format);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);

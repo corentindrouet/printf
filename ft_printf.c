@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/18 09:14:27 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/18 13:16:21 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ int			ft_printf(const char *restrict format, ...)
 			i[1]++;
 		if (i[1] != 15 && (verif_flag(ft_strsub(&format[i[0] + 1], 0, cont_carac((char*)&format[i[0]], s) + 1), s, 0) == -1))
 		{
-			i[2] += f[i[1]](ft_strsub(&format[i[0]], 0,
-				cont_carac((char*)&format[i[0]], s) + 1), ap);
+			i[2] += f[i[1]](ft_strsub(&format[i[0] + 1], 0,
+				cont_carac((char*)&format[i[0] + 1], s) + 1), ap);
 			if (s == '%')
 				i[0]++;
 			i[0] += cont_carac((char*)&format[i[0]], s) + 1;
@@ -134,8 +134,13 @@ int			cont_carac(char *s, char c)
 
 int			pct_pct(const char *restrict format, va_list ap)
 {
+	char	*res;
+
 	(void)ap;
-	(void)format;
-	ft_putchar('%');
-	return (1);
+	res = ft_strnew(2);
+	res[0] = '%';
+//	ft_putchar('%');
+	res = aj_decal(&res, format);
+	ft_putstr(res);
+	return (ft_strlen(res));
 }
