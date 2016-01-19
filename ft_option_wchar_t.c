@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 11:47:00 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/19 14:12:39 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/19 14:54:59 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ wchar_t	*decal_wstr(wchar_t **str, const char *restrict format)
 {
 	wchar_t	*ptr;
 	int		i;
+	int		j;
 	char	c;
 	int		decal;
 
@@ -72,7 +73,14 @@ wchar_t	*decal_wstr(wchar_t **str, const char *restrict format)
 	{
 		ptr[0] = 0;
 		ft_wstrcat(ptr, *str);
-		decal = nbr_bytes_wstr
+		i = 0;
+		while (ptr[i] != 0)
+			i++;
+		j = -1;
+		while (++j < (decal - nbr_bytes_wstr(*str)))
+			ptr[i++] = ' ';
+		ptr[i] = 0;
+		return (ptr);
 	}
 }
 
