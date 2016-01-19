@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:36:36 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/19 11:39:01 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/19 11:54:59 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <unistd.h>
 # include "libft.h"
 
+int		nbr_bytes_wchar(wchar_t s);
+int		nbr_bytes_wstr(wchar_t *str);
 int		ft_putwstr_t(wchar_t *str);
 int		pct_ls(const char *restrict format, va_list ap);
 int		ft_putwchar_t(wchar_t s);

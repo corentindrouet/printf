@@ -6,7 +6,7 @@
 #    By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/04 13:04:33 by cdrouet           #+#    #+#              #
-#    Updated: 2016/01/19 09:30:56 by cdrouet          ###   ########.fr        #
+#    Updated: 2016/01/19 11:57:03 by cdrouet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,8 @@ SRC = ft_printf.c \
 	  ft_strcmp.c \
 	  ft_diese.c \
 	  ft_atoi_base.c \
-	  ft_putwchar_t.c
+	  ft_putwchar_t.c \
+	  ft_option_wchar_t.c \
 
 BIN = $(SRC:.c=.o)
 
