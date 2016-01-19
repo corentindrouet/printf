@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 11:47:00 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/19 11:57:33 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/19 14:12:39 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,52 @@ int		nbr_bytes_wstr(wchar_t *str)
 	return (res);
 }
 
-int		decal_wstr(wchar_t *str, const char *restrict format)
+wchar_t	*decal_wstr(wchar_t **str, const char *restrict format)
 {
-	(void)str;
-	(void)format;
-	return (0);
+	wchar_t	*ptr;
+	int		i;
+	char	c;
+	int		decal;
+
+	i = -1;
+	while (format[++i])
+		if (format[i] >= '0' && format[i] <= '9')
+			break;
+		else if (format[i] == '.')
+			return (*str);
+	c = ' ';
+	if (format[i] == '0')
+		c = '0';
+	decal = ft_atoi(&format[i]);
+	if (decal <= nbr_bytes_wstr(*str))
+		return (*str);
+	ptr = (wchar_t*)malloc(decal + 1);
+	if (ft_strchr(format, '-') == NULL)
+	{
+		decal = decal - nbr_bytes_wstr(*str);
+		while (--decal >= 0)
+			ptr[decal] = c;
+		return (ft_wstrcat(ptr, *str));
+	}
+	else
+	{
+		ptr[0] = 0;
+		ft_wstrcat(ptr, *str);
+		decal = nbr_bytes_wstr
+	}
+}
+
+wchar_t	*ft_wstrcat(wchar_t *dest, wchar_t *src)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	j = 0;
+	while (dest[j] != 0)
+		j++;
+	while (src[++i] != 0)
+		dest[j + i] = src[i];
+	dest[j + i] = 0;
+	return (dest);
 }
