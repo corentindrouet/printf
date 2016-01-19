@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:58:50 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/19 11:23:29 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/19 11:43:12 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,10 @@
 
 int		main()
 {
-	int		i;
 	wchar_t *p = NULL;
 	char	*ptr = setlocale(LC_ALL, "");
 
-	i = 945;
-//	ft_printf(" | %d -- ft_printf\n", ft_printf("%C", L'猫'));
-//	printf("%d", ft_atoi_base(ft_itoa_base(1234, 2), 2));
-	ft_printf(" | %d -- ft_printf\n", ft_printf("%ls", p));
-	printf(" | %d -- printf\n", printf("%ls", p));
+	ft_printf(" | %d -- ft_printf\n", ft_printf("%S prout %S", L"我是一只猫。", p));
+	printf(" | %d -- printf\n", printf("%S prout %S", L"我是一只猫。", p));
 	return (0);
 }

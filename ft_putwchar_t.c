@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 13:49:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/19 11:08:30 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/19 11:39:32 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,16 @@ int			ft_putwchar_t(wchar_t s)
 	else
 		return (put_4o(str));
 	return (0);
+}
+
+int			ft_putwstr_t(wchar_t *str)
+{
+	int	i;
+	int	ow;
+
+	ow = 0;
+	i = 0;
+	while (str[i] != 0)
+		ow += ft_putwchar_t(str[i++]);
+	return (ow);
 }
