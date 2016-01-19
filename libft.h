@@ -6,7 +6,7 @@
 /*   By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 12:00:06 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/11 09:14:04 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/19 09:34:01 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char				*ft_stoa_base(short nb, int base);
 char				*ft_lltoa_base(long long nb, int base);
 char				*ft_ctoa_base(char nb, int base);
 void				ft_putnbr_base(unsigned long w, int base);
-void				ft_putwchar_t(wchar_t *str);
+int					ft_putwchar_t(wchar_t s);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void				ft_lstadd(t_list **alst, t_list *new);
