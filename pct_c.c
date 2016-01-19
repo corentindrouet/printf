@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 10:23:01 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/18 13:41:40 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/19 11:10:24 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,14 @@ int			pct_lc(const char *restrict format, va_list ap)
 
 	(void)format;
 	res = (wchar_t)va_arg(ap, wchar_t);
-	write(1, &res, 1);
-	return (1);
+	return (ft_putwchar_t(res));
 }
 
 int			pct_c(const char *restrict format, va_list ap)
 {
 	if (ft_strchr(format, 'l') == NULL)
 		return (pct_cc(format, ap));
+	else
+		return (pct_lc(format, ap));
 	return (0);
 }

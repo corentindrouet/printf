@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 10:23:27 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 08:16:22 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/19 11:22:04 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int		pct_gs(const char *restrict format, va_list ap)
 {
-	(void)ap;
-	(void)format;
-	return (0);
+	return (pct_ls(format, ap));
 }

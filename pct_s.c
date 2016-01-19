@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:54:51 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/14 15:00:18 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/19 11:25:49 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,24 @@ static int	pct_ss(const char *restrict format, va_list ap)
 	return (ft_strlen(str));
 }
 
-static int	pct_ls(const char *restrict format, va_list ap)
+int			pct_ls(const char *restrict format, va_list ap)
 {
+	wchar_t	*res;
+	int		ow;
+	int		i;
+
 	(void)format;
-	(void)ap;
-	return (0);
+	res = (wchar_t*)va_arg(ap, wchar_t*);
+	if (res == NULL)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
+	ow = 0;
+	i = 0;
+	while (res[i] != 0)
+		ow += ft_putwchar_t(res[i++]);
+	return (ow);
 }
 
 int			pct_s(const char *restrict format, va_list ap)
