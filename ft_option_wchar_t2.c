@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 09:57:48 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/21 11:27:34 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/21 12:43:31 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ wchar_t	*precis_wchar_t(wchar_t *ptr, const char *restrict format)
 		return (ptr);
 	i = 0;
 	j = 0;
-	while ((i += nbr_bytes_wchar(ptr[j])) < prec)
+	while ((i += nbr_bytes_wchar(ptr[j])) <= prec)
 		j++;
 	res = (wchar_t*)malloc(sizeof(wchar_t) * (j + 2));
-	if (nbr_bytes_wchar(ptr[j]) > 1)
 		j--;
 	i = j;
 	while (j >= 0)

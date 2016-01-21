@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 11:47:00 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/21 11:50:32 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/21 12:33:55 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,11 @@ wchar_t	*decal_wstr(wchar_t **str, const char *restrict format)
 	decal = ft_atoi(&format[i]);
 	if (decal <= nbr_bytes_wstr(*str))
 		return (*str);
-	ptr = (wchar_t*)malloc(decal + 1);
+	ptr = (wchar_t*)malloc(sizeof(wchar_t) * (decal + 1));
 	if (ft_strchr(format, '-') == NULL)
 	{
 		decal = decal - nbr_bytes_wstr(*str);
 		ptr[decal] = 0;
-		ft_putchar('|');
-		ft_putchar(decal + '0');
-		ft_putchar('|');
 		while (--decal >= 0)
 			ptr[decal] = c;
 		return (ft_wstrcat(ptr, (*str)));
