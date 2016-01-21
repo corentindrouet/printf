@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:39:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/18 08:08:40 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/21 08:52:23 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		pct_hhd(va_list ap, const char *restrict format)
 	{
 		if (res[0] == '0')
 			res[0] = ' ';
-		else	
+		else
 			res = ft_strjoin(" ", res);
 	}
 	ft_putstr(res);
@@ -96,7 +96,7 @@ int		pct_ld(va_list ap, const char *restrict format)
 	{
 		if (res[0] == '0')
 			res[0] = ' ';
-		else	
+		else
 			res = ft_strjoin(" ", res);
 	}
 	ft_putstr(res);
@@ -119,7 +119,7 @@ int		pct_lld(va_list ap, const char *restrict format)
 	{
 		if (res[0] == '0')
 			res[0] = ' ';
-		else	
+		else
 			res = ft_strjoin(" ", res);
 	}
 	ft_putstr(res);

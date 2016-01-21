@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 09:59:37 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/14 15:01:02 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/21 08:45:29 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	*ft_diese_gx(const char *restrict format, char **ptr)
 	i = 0;
 	while ((*ptr)[i] == ' ')
 		i++;
-	if ((*ptr)[i] == '0' && (*ptr)[i + 1] == '0' && ft_strchr(format, '.') == NULL)
+	if ((*ptr)[i] == '0' && (*ptr)[i + 1] == '0' && !ft_strchr(format, '.'))
 	{
 		(*ptr)[i + 1] = 'X';
 		return (*ptr);
@@ -79,7 +79,7 @@ static char	*ft_diese_x(const char *restrict format, char **ptr)
 	i = 0;
 	while ((*ptr)[i] == ' ')
 		i++;
-	if ((*ptr)[i] == '0' && (*ptr)[i + 1] == '0' && ft_strchr(format, '.') == NULL)
+	if ((*ptr)[i] == '0' && (*ptr)[i + 1] == '0' && !ft_strchr(format, '.'))
 	{
 		(*ptr)[i + 1] = 'x';
 		return (*ptr);
@@ -108,7 +108,7 @@ static char	*ft_diese_x(const char *restrict format, char **ptr)
 	return (*ptr);
 }
 
-char		*ft_diese(const char *restrict format, char **ptr, int base, int maj)
+char		*ft_diese(const char *restrict format, char **ptr, int base, int m)
 {
 	char	*res;
 
@@ -117,9 +117,9 @@ char		*ft_diese(const char *restrict format, char **ptr, int base, int maj)
 		return (*ptr);
 	if (base == 8)
 		res = ft_diese_o(ptr);
-	else if (base == 16 && maj == 0)
+	else if (base == 16 && m == 0)
 		res = ft_diese_x(format, ptr);
-	else if (base == 16 && maj == 1)
+	else if (base == 16 && m == 1)
 		res = ft_diese_gx(format, ptr);
 	return (res);
 }

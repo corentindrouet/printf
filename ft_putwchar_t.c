@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 13:49:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/19 11:46:41 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/21 09:01:15 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static int	put_3o(char *str)
 	mask[1] = ft_strjoin("10", ft_strsub(&str[ft_strlen(str) - 12], 0, 6));
 	mask[2] = ft_strjoin("10", ft_strsub(&str[ft_strlen(str) - 6], 0, 6));
 	i = -1;
-	while ((ft_strlen(mask[0]) + ft_strlen(ft_strsub(str, 0, ft_strlen(str) - 12))) < 8)
+	while ((ft_strlen(mask[0]) +
+		ft_strlen(ft_strsub(str, 0, ft_strlen(str) - 12))) < 8)
 		mask[0] = ft_strjoin(mask[0], "x");
 	mask[0] = ft_strjoin(mask[0], ft_strsub(str, 0, ft_strlen(str) - 12));
 	while (mask[0][++i])
@@ -46,7 +47,8 @@ static int	put_4o(char *str)
 	mask[2] = ft_strjoin("10", ft_strsub(&str[ft_strlen(str) - 12], 0, 6));
 	mask[3] = ft_strjoin("10", ft_strsub(&str[ft_strlen(str) - 6], 0, 6));
 	i = -1;
-	while ((ft_strlen(mask[0]) + ft_strlen(ft_strsub(str, 0, ft_strlen(str) - 18))) < 8)
+	while ((ft_strlen(mask[0]) +
+		ft_strlen(ft_strsub(str, 0, ft_strlen(str) - 18))) < 8)
 		mask[0] = ft_strjoin(mask[0], "x");
 	mask[0] = ft_strjoin(mask[0], ft_strsub(str, 0, ft_strlen(str) - 18));
 	while (mask[0][++i])
@@ -63,7 +65,6 @@ static int	put_4o(char *str)
 	return (4);
 }
 
-
 static int	put_2o(char *str)
 {
 	char	*mask[2];
@@ -72,7 +73,8 @@ static int	put_2o(char *str)
 	mask[0] = ft_strjoin("11", "0");
 	mask[1] = ft_strjoin("10", ft_strsub(&str[ft_strlen(str) - 6], 0, 6));
 	i = -1;
-	while ((ft_strlen(mask[0]) + ft_strlen(ft_strsub(str, 0, ft_strlen(str) - 6))) < 8)
+	while ((ft_strlen(mask[0]) +
+		ft_strlen(ft_strsub(str, 0, ft_strlen(str) - 6))) < 8)
 		mask[0] = ft_strjoin(mask[0], "x");
 	mask[0] = ft_strjoin(mask[0], ft_strsub(str, 0, ft_strlen(str) - 6));
 	while (mask[0][++i])

@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 14:01:57 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/14 14:54:24 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/21 08:52:02 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char	*aj_zero_neg(char **ptr, int i)
 	char	*res;
 	int		l;
 	int		len;
-	
+
 	l = 0;
 	len = (int)ft_strlen(*ptr);
 	if (i < len)
@@ -49,7 +49,7 @@ static char	*aj_zero_neg(char **ptr, int i)
 	return (res);
 }
 
-char	*aj_zero(char **ptr, const char *restrict format)
+char		*aj_zero(char **ptr, const char *restrict format)
 {
 	int		i;
 
@@ -66,7 +66,7 @@ char	*aj_zero(char **ptr, const char *restrict format)
 		return (aj_zero_pos(ptr, format, i));
 }
 
-void	aj_decal_d(int i, char **ptr, char *res, char c)
+void		aj_decal_d(int i, char **ptr, char *res, char c)
 {
 	char	*s;
 	int		j;
@@ -91,12 +91,12 @@ void	aj_decal_d(int i, char **ptr, char *res, char c)
 	}
 }
 
-void	aj_decal_g(int i, const char *restrict format, char *res, char **ptr)
+void		aj_decal_g(int i, const char *restrict format, char *res, char **p)
 {
 	int	j;
 
-	j = ft_strlen(*ptr);
-	ft_strcpy(res, *ptr);
+	j = ft_strlen(*p);
+	ft_strcpy(res, *p);
 	if (ft_strchr(format, '+') != NULL)
 		i--;
 	while (j < (i + 1))

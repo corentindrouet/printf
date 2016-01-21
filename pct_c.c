@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 10:23:01 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/19 11:10:24 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/21 08:58:17 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,20 @@ static int	pct_cc(const char *restrict format, va_list ap)
 	i = 0;
 	while (format[i] && !ft_isdigit(format[i]))
 		i++;
-	if (format[i] && format[i - 1] != '.')
-	{
-		str = ft_strnew(2);
-		str[0] = ptr;
+	str = ft_strnew(2);
+	str[0] = ptr;
+	if (format[i - 1] != '.')
 		str = aj_decal(&str, format);
-		if (ptr == 0)
-		{
-			ft_putstr(&str[1]);
-			ft_putchar('\0');
-		}
-		else
-			ft_putstr(str);
-		if (ft_strlen(str) == 0)
-			return (1);
-		return (ft_strlen(str));
+	if (ptr == 0)
+	{
+		ft_putstr(&str[1]);
+		ft_putchar('\0');
 	}
-	ft_putchar(ptr);
-	return (1);
+	else
+		ft_putstr(str);
+	if (ft_strlen(str) == 0)
+		return (1);
+	return (ft_strlen(str));
 }
 
 int			pct_lc(const char *restrict format, va_list ap)

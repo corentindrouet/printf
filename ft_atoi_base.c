@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 08:40:41 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/19 09:25:32 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/21 08:42:09 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_puiss(int nbr, unsigned int p)
 	return (nbr);
 }
 
-int		ft_atoi_base(const char *str, int base)
+int			ft_atoi_base(const char *str, int base)
 {
 	int	len;
 	int	i;

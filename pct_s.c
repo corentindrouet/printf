@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:54:51 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/19 13:17:41 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/21 11:30:23 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int			pct_ls(const char *restrict format, va_list ap)
 	res = (wchar_t*)va_arg(ap, wchar_t*);
 	if (res == NULL)
 		return (ft_putwstr_t(L"(null)"));
+	res = precis_wchar_t(res, format);
 	res = decal_wstr(&res, format);
 	return (ft_putwstr_t(res));
 }

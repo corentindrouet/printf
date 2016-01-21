@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/18 13:28:13 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/21 08:49:37 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		pct_jd(va_list ap, const char *restrict format)
 	{
 		if (res[0] == '0')
 			res[0] = ' ';
-		else	
+		else
 			res = ft_strjoin(" ", res);
 	}
 	ft_putstr(res);
@@ -51,7 +51,7 @@ int		pct_zd(va_list ap, const char *restrict format)
 	{
 		if (res[0] == '0')
 			res[0] = ' ';
-		else	
+		else
 			res = ft_strjoin(" ", res);
 	}
 	ft_putstr(res);
@@ -74,7 +74,7 @@ int		pct_dd(va_list ap, const char *restrict format)
 	{
 		if (res[0] == '0')
 			res[0] = ' ';
-		else	
+		else
 			res = ft_strjoin(" ", res);
 	}
 	ft_putstr(res);
@@ -94,7 +94,7 @@ char	*aj_plus(char **ptr)
 			(*ptr)[i] = '+';
 			return (*ptr);
 		}
-	}	
+	}
 	res = (char*)malloc(ft_strlen(*ptr) + 2);
 	i = ft_strlen(*ptr) - 1;
 	res[i + 2] = '\0';
@@ -122,7 +122,9 @@ char	*aj_decal(char **ptr, const char *restrict format)
 	if (format[i - 1] == '.')
 		return (*ptr);
 	if ((format[i] == '0' && ft_strchr(&format[i], '.') == NULL)
-			|| (ft_strchr(&format[i], '.') != NULL && (ft_atoi(ft_strchr(&format[i], '.') + 1) == 0 && format[i] == '0')))
+		|| (ft_strchr(&format[i], '.') != NULL
+			&& (ft_atoi(ft_strchr(&format[i], '.') + 1) == 0
+				&& format[i] == '0')))
 		c = '0';
 	if (format[i + 1] == '+' || format[i + 1] == '-' || format[i + 1] == ' ')
 		i += 2;
