@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 14:01:57 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/21 08:52:02 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/22 13:43:43 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	*aj_zero_neg(char **ptr, int i)
 	return (res);
 }
 
-char		*aj_zero(char **ptr, const char *restrict format)
+char		*aj_zero(char **ptr, const char *restrict format, int nb)
 {
 	int		i;
 
@@ -57,7 +57,10 @@ char		*aj_zero(char **ptr, const char *restrict format)
 	while (format[++i] != '.')
 		if (!format[i])
 			return (*ptr);
-	i = ft_atoi(&format[++i]);
+	if (format[i + 1] == '*')
+		i = nb;
+	else
+		i = ft_atoi(&format[++i]);
 	if (i == 0 && ft_atoi(*ptr) == 0)
 		(*ptr)[0] = '\0';
 	if (ft_atoi(*ptr) < 0)

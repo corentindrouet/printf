@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/21 09:03:43 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/22 14:38:15 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static int	verif_flag(const char *restrict format, int s, int e)
 		if (format[i] != '+' && format[i] != '-' && !(format[i] >= '0'
 			&& format[i] <= '9') && format[i] != ' ' && format[i] != '#'
 				&& format[i] != 'h' && format[i] != 'l' && format[i] != 'j'
-					&& format[i] != 'z' && format[i] != '%' && format[i] != '.')
+					&& format[i] != 'z' && format[i] != '%' && format[i] != '.'
+						&& format[i] != '*')
 			break ;
 	if (e == 1 && format[i] && format[i] != s)
 	{
@@ -56,7 +57,7 @@ static int	verif_flag(const char *restrict format, int s, int e)
 		{
 			ptr = ft_strnew(2);
 			ptr[0] = c;
-			ptr = aj_decal(&ptr, format);
+			ptr = aj_decal(&ptr, format, 0);
 			ft_putstr(ptr);
 			return (ft_strlen(ptr));
 		}
@@ -142,7 +143,7 @@ int			pct_pct(const char *restrict format, va_list ap)
 	(void)ap;
 	res = ft_strnew(2);
 	res[0] = '%';
-	res = aj_decal(&res, format);
+	res = aj_decal(&res, format, 0);
 	ft_putstr(res);
 	return (ft_strlen(res));
 }

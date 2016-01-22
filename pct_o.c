@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:58:40 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/18 10:03:45 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/22 14:30:25 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,20 @@ int		pct_hho(va_list ap, const char *restrict format, int base, int maj)
 {
 	unsigned char	ptr;
 	char			*res;
+	int		nb1;
+	int		nb2;
 
+	nb1 = 0;
+	nb2 = 0;
+	while (format[++nb2])
+		if (format[nb2] == '*')
+			nb1++;
+	init(&nb1, &nb2, ap);
 	ptr = (unsigned char)va_arg(ap, int);
 	res = ft_itoa_base(ptr, base);
 	if (!(ft_strchr(format, '#') && ptr == 0) || base == 16)
-		res = aj_zero(&res, format);
-	res = aj_decal(&res, format);
+		res = aj_zero(&res, format, nb2);
+	res = aj_decal(&res, format, nb1);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
 	if (ft_strchr(format, '#') != NULL)
@@ -54,12 +62,20 @@ int		pct_ho(va_list ap, const char *restrict format, int base, int maj)
 {
 	unsigned short	ptr;
 	char			*res;
+	int		nb1;
+	int		nb2;
 
+	nb1 = 0;
+	nb2 = 0;
+	while (format[++nb2])
+		if (format[nb2] == '*')
+			nb1++;
+	init(&nb1, &nb2, ap);
 	ptr = (unsigned short)va_arg(ap, int);
 	res = ft_itoa_base(ptr, base);
 	if (!(ft_strchr(format, '#') && ptr == 0) || base == 16)
-		res = aj_zero(&res, format);
-	res = aj_decal(&res, format);
+		res = aj_zero(&res, format, nb2);
+	res = aj_decal(&res, format, nb1);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
 	if (ft_strchr(format, '#') != NULL)
@@ -72,12 +88,20 @@ int		pct_llo(va_list ap, const char *restrict format, int base, int maj)
 {
 	unsigned long long	ptr;
 	char				*res;
+	int		nb1;
+	int		nb2;
 
+	nb1 = 0;
+	nb2 = 0;
+	while (format[++nb2])
+		if (format[nb2] == '*')
+			nb1++;
+	init(&nb1, &nb2, ap);
 	ptr = (unsigned long long)va_arg(ap, unsigned long long);
 	res = ft_ulltoa_base((unsigned long long)ptr, base);
 	if (!(ft_strchr(format, '#') && ptr == 0) || base == 16)
-		res = aj_zero(&res, format);
-	res = aj_decal(&res, format);
+		res = aj_zero(&res, format, nb2);
+	res = aj_decal(&res, format, nb1);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
 	if (ft_strchr(format, '#') != NULL)
@@ -90,12 +114,20 @@ int		pct_lo(va_list ap, const char *restrict format, int base, int maj)
 {
 	unsigned long	ptr;
 	char			*res;
+	int		nb1;
+	int		nb2;
 
+	nb1 = 0;
+	nb2 = 0;
+	while (format[++nb2])
+		if (format[nb2] == '*')
+			nb1++;
+	init(&nb1, &nb2, ap);
 	ptr = (unsigned long)va_arg(ap, unsigned long);
 	res = ft_ultoa_base((unsigned long)ptr, base);
 	if (!(ft_strchr(format, '#') && ptr == 0) || base == 16)
-		res = aj_zero(&res, format);
-	res = aj_decal(&res, format);
+		res = aj_zero(&res, format, nb2);
+	res = aj_decal(&res, format, nb1);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
 	if (ft_strchr(format, '#') != NULL)

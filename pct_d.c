@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:39:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/21 08:52:23 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/22 14:28:24 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,20 @@ int		pct_hhd(va_list ap, const char *restrict format)
 	signed char	ptr;
 	int			convert;
 	char		*res;
+	int		nb1;
+	int		nb2;
 
+	nb1 = 0;
+	nb2 = 0;
+	while (format[++nb2])
+		if (format[nb2] == '*')
+			nb1++;
+	init(&nb1, &nb2, ap);
 	ptr = (signed char)va_arg(ap, int);
 	convert = ptr;
 	res = ft_itoa(convert);
-	res = aj_zero(&res, format);
-	res = aj_decal(&res, format);
+	res = aj_zero(&res, format, nb2);
+	res = aj_decal(&res, format, nb1);
 	if (ptr >= 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
 	else if (ptr > 0 && (ft_strchr(format, '+') == NULL)
@@ -61,11 +69,19 @@ int		pct_hd(va_list ap, const char *restrict format)
 {
 	short	i;
 	char	*res;
+	int		nb1;
+	int		nb2;
 
+	nb1 = 0;
+	nb2 = 0;
+	while (format[++nb2])
+		if (format[nb2] == '*')
+			nb1++;
+	init(&nb1, &nb2, ap);
 	i = (short)va_arg(ap, int);
 	res = ft_itoa((int)i);
-	res = aj_zero(&res, format);
-	res = aj_decal(&res, format);
+	res = aj_zero(&res, format, nb2);
+	res = aj_decal(&res, format, nb1);
 	if (i >= 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
 	else if (i >= 0 && (ft_strchr(format, '+') == NULL)
@@ -84,11 +100,19 @@ int		pct_ld(va_list ap, const char *restrict format)
 {
 	long	i;
 	char	*res;
+	int		nb1;
+	int		nb2;
 
+	nb1 = 0;
+	nb2 = 0;
+	while (format[++nb2])
+		if (format[nb2] == '*')
+			nb1++;
+	init(&nb1, &nb2, ap);
 	i = va_arg(ap, long);
 	res = ft_lltoa((long long)i);
-	res = aj_zero(&res, format);
-	res = aj_decal(&res, format);
+	res = aj_zero(&res, format, nb2);
+	res = aj_decal(&res, format, nb1);
 	if (i >= 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
 	else if (i > 0 && (ft_strchr(format, '+') == NULL)
@@ -107,11 +131,19 @@ int		pct_lld(va_list ap, const char *restrict format)
 {
 	long long	i;
 	char		*res;
+	int		nb1;
+	int		nb2;
 
+	nb1 = 0;
+	nb2 = 0;
+	while (format[++nb2])
+		if (format[nb2] == '*')
+			nb1++;
+	init(&nb1, &nb2, ap);
 	i = va_arg(ap, long long);
 	res = ft_lltoa(i);
-	res = aj_zero(&res, format);
-	res = aj_decal(&res, format);
+	res = aj_zero(&res, format, nb2);
+	res = aj_decal(&res, format, nb1);
 	if (i >= 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
 	else if (i > 0 && (ft_strchr(format, '+') == NULL)

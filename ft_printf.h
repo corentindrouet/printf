@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:36:36 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/21 10:52:51 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/22 14:33:40 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <unistd.h>
 # include "libft.h"
 
-wchar_t	*precis_wchar_t(wchar_t *ptr, const char *restrict format);
-wchar_t	*decal_wstr(wchar_t **str, const char *restrict format);
+wchar_t	*precis_wchar_t(wchar_t *ptr, const char *restrict format, int nb);
+wchar_t	*decal_wstr(wchar_t **str, const char *restrict format, int nb);
 wchar_t	*ft_wstrcat(wchar_t *dest, wchar_t *src);
 int		nbr_bytes_wchar(wchar_t s);
 int		nbr_bytes_wstr(wchar_t *str);
@@ -37,8 +37,9 @@ int		pct_zo(va_list ap, const char *restrict format, int base, int maj);
 int		pct_oo(va_list ap, const char *restrict format, int base, int maj);
 void	aj_decal_g(int i, const char *restrict format, char *res, char **ptr);
 void	aj_decal_d(int i, char **ptr, char *res, char c);
-char	*aj_zero(char **ptr, const char *restrict format);
-char	*aj_decal(char **ptr, const char *restrict format);
+void	init(int *nb1, int *nb2, va_list ap);
+char	*aj_zero(char **ptr, const char *restrict format, int nb);
+char	*aj_decal(char **ptr, const char *restrict format, int nb);
 int		cont_carac(char *s, char c);
 char	*aj_plus(char **ptr);
 char	*ft_lltoa(long long nbr);
