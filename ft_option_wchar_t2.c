@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 09:57:48 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/22 14:33:11 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 11:30:40 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,26 @@ wchar_t	*precis_wchar_t(wchar_t *ptr, const char *restrict format, int nb)
 	}
 	res[i + 1] = 0;
 	return (res);
+}
+
+int		ft_wstrlen(wchar_t *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != 0)
+		i++;
+	return (i);
+}
+
+int		ft_putwmem(wchar_t *str, int i)
+{
+	int	j;
+	int	ow;
+
+	j = -1;
+	ow = 0;
+	while (++j < i)
+		ow += ft_putwchar_t(str[j]);
+	return (ow);
 }

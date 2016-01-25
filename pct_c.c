@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 10:23:01 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/25 10:12:48 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 12:04:56 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ static int	pct_cc(const char *restrict format, va_list ap)
 	if (ptr == 0)
 	{
 		i = ft_strlen(&str[1]) + 1;
-		ft_putmem(&str[1], i);
+		str[0] = '\0';
+		if (nb1 < 0)
+			ft_putmem(str, i);
+		else
+			ft_putmem(&str[1], i);
+		str[0] = ' ';
 	}
 	else
 		ft_putstr(str);
@@ -65,11 +70,15 @@ int			pct_lc(const char *restrict format, va_list ap)
 			nb1++;
 	init(&nb1, &nb2, ap);
 	res = (wchar_t)va_arg(ap, wchar_t);
-	if (res == 0)
-		return (1);
+//	if (res == 0)
+//		return (1);
 	pr = (wchar_t*)malloc(sizeof(wchar_t) * 2);
 	pr[0] = res;
 	pr = decal_wstr(&pr, format, (int)nb1);
+	if (res == 0 && ft_wstrlen(pr) == 0)
+		return (ft_putwmem(pr, ft_wstrlen(pr) + 1));
+	else if (res == 0)
+		return (ft_putwmem(&pr[1], ft_wstrlen(pr)));
 	return (ft_putwstr_t(pr));
 }
 
