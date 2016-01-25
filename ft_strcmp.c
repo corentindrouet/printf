@@ -6,11 +6,11 @@
 /*   By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 16:53:34 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 14:26:07 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 14:51:05 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static int	ftmemcmp(const void *s1, const void *s2, size_t n)
 {

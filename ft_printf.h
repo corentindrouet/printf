@@ -6,16 +6,19 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:36:36 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/25 11:32:57 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 14:55:16 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <stdarg.h>
+# include <string.h>
+# include <stdlib.h>
 # include <unistd.h>
-# include "libft.h"
 
+int		ft_atoi(const char *str);
+char	*ft_ctoa_base(char nb, int base);
 int		ft_wstrlen(wchar_t *str);
 int		ft_putwmem(wchar_t *str, int i);
 wchar_t	*precis_wchar_t(wchar_t *ptr, const char *restrict format, int nb);
@@ -44,6 +47,25 @@ char	*aj_zero(char **ptr, const char *restrict format, int nb);
 char	*aj_decal(char **ptr, const char *restrict format, int nb);
 int		cont_carac(char *s, char c);
 char	*aj_plus(char **ptr);
+char	*ft_itoa_base(int nb, int base);
+char	*ft_ltoa_base(long nb, int base);
+char	*ft_itoa(int n);
+char	*ft_strjoin(char const *s1, char const *s2);
+int		ft_toupper(int c);
+int		ft_isdigit(int c);
+int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strrchr(const char *s, int c);
+char	*ft_strcat(char *s1, const char *s2);
+char	*ft_strcpy(char *dst, const char *src);
+void	ft_putstr(char const *s);
+void	ft_putchar(char c);
+size_t	ft_strlen(const char *s);
+char	*ft_strnew(size_t size);
+char	*ft_strsub(char const *s, unsigned int start, size_t len);
+char	*ft_stoa_base(short nb, int base);
+char	*ft_lltoa_base(long long nb, int base);
+char	*ft_ctoa_base(char nb, int base);
 char	*ft_lltoa(long long nbr);
 char	*ft_uitoa_base(unsigned int nbr, int base);
 char	*ft_ultoa_base(unsigned long nbr, int base);

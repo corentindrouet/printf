@@ -6,11 +6,11 @@
 /*   By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 08:56:53 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/12 08:42:21 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 14:40:15 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static void	ft_putindex(const char *str, int *i)
 {

@@ -6,11 +6,11 @@
 /*   By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 08:10:52 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/11/26 14:02:29 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 14:49:49 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 void	ft_putchar(char c)
 {

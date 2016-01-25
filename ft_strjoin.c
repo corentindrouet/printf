@@ -6,11 +6,11 @@
 /*   By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 15:51:09 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/14 09:24:11 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 14:51:31 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

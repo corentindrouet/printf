@@ -6,11 +6,11 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:07:53 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/11 11:43:05 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 14:49:30 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static int	recur_ltoa_b(unsigned long nb, int base, char *ptr, int index)
 {

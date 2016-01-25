@@ -6,11 +6,11 @@
 /*   By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 09:08:11 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/11/24 09:12:52 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 14:53:50 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 size_t	ft_strlen(const char *s)
 {
