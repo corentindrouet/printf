@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/22 14:38:15 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 13:14:04 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	f_init(int (**f)(const char *reformatict, va_list))
 	f[14] = &pct_pct;
 }
 
-static int	verif_flag(const char *restrict format, int s, int e)
+static int	verif_flag(const char *restrict format, int s, int e, va_list ap)
 {
 	int		i;
 	int		j;
@@ -51,13 +51,15 @@ static int	verif_flag(const char *restrict format, int s, int e)
 	{
 		c = format[i];
 		j = 0;
-		while (format[j] && !ft_isdigit(format[j]))
+		while (format[j] && !ft_isdigit(format[j]) && format[j] != '*')
 			j++;
 		if (format[j])
 		{
+			if (format[j] == '*')
+				init(&i, &j, ap);
 			ptr = ft_strnew(2);
 			ptr[0] = c;
-			ptr = aj_decal(&ptr, format, 0);
+			ptr = aj_decal(&ptr, format, j);
 			ft_putstr(ptr);
 			return (ft_strlen(ptr));
 		}
@@ -100,7 +102,7 @@ int			ft_printf(const char *restrict format, ...)
 		while (ptr[i[1]] != s && ptr[i[1]])
 			i[1]++;
 		if (i[1] != 15 && (verif_flag(ft_strsub(&format[i[0] + 1], 0,
-			cont_carac((char*)&format[i[0]], s) + 1), s, 0) == -1))
+			cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) == -1))
 		{
 			i[2] += f[i[1]](ft_strsub(&format[i[0] + 1], 0,
 				cont_carac((char*)&format[i[0] + 1], s) + 1), ap);
@@ -109,12 +111,12 @@ int			ft_printf(const char *restrict format, ...)
 			i[0] += cont_carac((char*)&format[i[0]], s) + 1;
 		}
 		else if (verif_flag(ft_strsub(&format[i[0] + 1], 0,
-			cont_carac((char*)&format[i[0]], s) + 1), s, 0) != -1 || i[1] == 15)
+			cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) != -1 || i[1] == 15)
 		{
 			i[2] += verif_flag(ft_strsub(&format[i[0] + 1], 0,
-				cont_carac((char*)&format[i[0]], s) + 1), s, 1);
+				cont_carac((char*)&format[i[0]], s) + 1), s, 1, ap);
 			i[0] += verif_flag(ft_strsub(&format[i[0] + 1], 0,
-				cont_carac((char*)&format[i[0]], s) + 1), s, 0) + 2;
+				cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) + 2;
 		}
 	}
 	i[2] += ft_strlen(&format[i[0]]);

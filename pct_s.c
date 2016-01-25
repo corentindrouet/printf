@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:54:51 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/25 08:23:57 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 12:55:59 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,12 @@ static int	pct_ss(const char *restrict format, va_list ap)
 		while (format[i] != '.')
 			i++;
 		i++;
-		str = ft_strsub(str, 0, ft_atoi(&format[i]));
+		if (nb2 < 0)
+			nb2 *= -1;
+		if (format[i] != '*')
+			str = ft_strsub(str, 0, ft_atoi(&format[i]));
+		else
+			str = ft_strsub(str, 0, nb2);
 	}
 	str = aj_decal(&str, format, nb1);
 	ft_putstr(str);
