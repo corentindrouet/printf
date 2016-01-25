@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:56:50 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/22 14:34:44 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 08:24:10 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		pct_p(const char *restrict format, va_list ap)
 	int		nb2;
 
 	nb1 = 0;
-	nb2 = 0;
+	nb2 = -1;
 	while (format[++nb2])
 		if (format[nb2] == '*')
 			nb1++;

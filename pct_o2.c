@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:42:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/22 14:34:24 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 08:26:50 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		pct_jo(va_list ap, const char *restrict format, int base, int maj)
 {
-	intmax_t		ptr;
-	char			*res;
-	int		nb1;
-	int		nb2;
+	intmax_t	ptr;
+	char		*res;
+	int			nb1;
+	int			nb2;
 
 	nb1 = 0;
 	nb2 = 0;
@@ -28,8 +28,8 @@ int		pct_jo(va_list ap, const char *restrict format, int base, int maj)
 	ptr = (intmax_t)va_arg(ap, intmax_t);
 	res = ft_ulltoa_base((long long)ptr, base);
 	if (!(ft_strchr(format, '#') && ptr == 0) || base == 16)
-		res = aj_zero(&res, format, nb2);
-	res = aj_decal(&res, format, nb1);
+		res = aj_zero(&res, format, (int)nb2);
+	res = aj_decal(&res, format, (int)nb1);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
 	if (ft_strchr(format, '#') != NULL)
@@ -54,8 +54,8 @@ int		pct_zo(va_list ap, const char *restrict format, int base, int maj)
 	ptr = (size_t)va_arg(ap, size_t);
 	res = ft_ulltoa_base((long long)ptr, base);
 	if (!(ft_strchr(format, '#') && ptr == 0) || base == 16)
-		res = aj_zero(&res, format, nb2);
-	res = aj_decal(&res, format, nb1);
+		res = aj_zero(&res, format, (int)nb2);
+	res = aj_decal(&res, format, (int)nb1);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
 	if (ft_strchr(format, '#') != NULL)
@@ -68,8 +68,8 @@ int		pct_oo(va_list ap, const char *restrict format, int base, int maj)
 {
 	unsigned int	ptr;
 	char			*res;
-	int		nb1;
-	int		nb2;
+	int				nb1;
+	int				nb2;
 
 	nb1 = 0;
 	nb2 = 0;
@@ -80,8 +80,8 @@ int		pct_oo(va_list ap, const char *restrict format, int base, int maj)
 	ptr = (unsigned int)va_arg(ap, unsigned int);
 	res = ft_uitoa_base((unsigned int)ptr, base);
 	if (!(ft_strchr(format, '#') && ptr == 0) || base == 16)
-		res = aj_zero(&res, format, nb2);
-	res = aj_decal(&res, format, nb1);
+		res = aj_zero(&res, format, (int)nb2);
+	res = aj_decal(&res, format, (int)nb1);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
 	if (ft_strchr(format, '#') != NULL)

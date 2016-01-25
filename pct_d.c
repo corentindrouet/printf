@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:39:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/22 14:28:24 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 08:22:44 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int		pct_hhd(va_list ap, const char *restrict format)
 	signed char	ptr;
 	int			convert;
 	char		*res;
-	int		nb1;
-	int		nb2;
+	int			nb1;
+	int			nb2;
 
 	nb1 = 0;
-	nb2 = 0;
+	nb2 = -1;
 	while (format[++nb2])
 		if (format[nb2] == '*')
 			nb1++;
@@ -73,7 +73,7 @@ int		pct_hd(va_list ap, const char *restrict format)
 	int		nb2;
 
 	nb1 = 0;
-	nb2 = 0;
+	nb2 = -1;
 	while (format[++nb2])
 		if (format[nb2] == '*')
 			nb1++;
@@ -104,7 +104,7 @@ int		pct_ld(va_list ap, const char *restrict format)
 	int		nb2;
 
 	nb1 = 0;
-	nb2 = 0;
+	nb2 = -1;
 	while (format[++nb2])
 		if (format[nb2] == '*')
 			nb1++;
@@ -131,11 +131,11 @@ int		pct_lld(va_list ap, const char *restrict format)
 {
 	long long	i;
 	char		*res;
-	int		nb1;
-	int		nb2;
+	int			nb1;
+	int			nb2;
 
 	nb1 = 0;
-	nb2 = 0;
+	nb2 = -1;
 	while (format[++nb2])
 		if (format[nb2] == '*')
 			nb1++;

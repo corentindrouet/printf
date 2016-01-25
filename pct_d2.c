@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/22 14:40:47 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 08:38:22 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int		pct_jd(va_list ap, const char *restrict format)
 {
 	intmax_t	i;
 	char		*res;
-	int		nb1;
-	int		nb2;
+	int			nb1;
+	int			nb2;
 
 	nb1 = 0;
-	nb2 = 0;
+	nb2 = -1;
 	while (format[++nb2])
 		if (format[nb2] == '*')
 			nb1++;
@@ -51,15 +51,15 @@ int		pct_zd(va_list ap, const char *restrict format)
 	int		nb2;
 
 	nb1 = 0;
-	nb2 = 0;
+	nb2 = -1;
 	while (format[++nb2])
 		if (format[nb2] == '*')
 			nb1++;
 	init(&nb1, &nb2, ap);
 	i = va_arg(ap, size_t);
 	res = ft_lltoa((long long)i);
-	res = aj_zero(&res, format, nb2);
-	res = aj_decal(&res, format, nb1);
+	res = aj_zero(&res, format, (int)nb2);
+	res = aj_decal(&res, format, (int)nb1);
 	if (i >= 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
 	else if (i > 0 && (ft_strchr(format, '+') == NULL)
@@ -82,15 +82,15 @@ int		pct_dd(va_list ap, const char *restrict format)
 	int		nb2;
 
 	nb1 = 0;
-	nb2 = 0;
+	nb2 = -1;
 	while (format[++nb2])
 		if (format[nb2] == '*')
 			nb1++;
 	init(&nb1, &nb2, ap);
 	i = va_arg(ap, int);
 	res = ft_itoa(i);
-	res = aj_zero(&res, format, nb2);
-	res = aj_decal(&res, format, nb1);
+	res = aj_zero(&res, format, (int)nb2);
+	res = aj_decal(&res, format, (int)nb1);
 	if (i >= 0 && (ft_strchr(format, '+') != NULL))
 		res = aj_plus(&res);
 	else if (i >= 0 && (ft_strchr(format, '+') == NULL)
@@ -153,13 +153,20 @@ char	*aj_decal(char **ptr, const char *restrict format, int nb)
 	if (format[i + 1] == '+' || format[i + 1] == '-' || format[i + 1] == ' ')
 		i += 2;
 	if (format[i] == '*')
-		i = nb;
+	{
+		if (nb >= 0)
+			i = nb;
+		else
+			i = -nb;
+	}
 	else
 		i = ft_atoi(&format[i]);
 	if (i <= (int)ft_strlen(*ptr))
 		return (*ptr);
 	res = ft_strnew(sizeof(char) * (i + 1));
-	if (ft_strchr(format, '-') == NULL)
+	if (ft_strchr(format, '-') == NULL
+		&& (ft_strchr(format, '*') == NULL
+			|| (ft_strchr(format, '*') != NULL && nb >= 0)))
 		aj_decal_d(--i, ptr, res, c);
 	else
 		aj_decal_g(--i, format, res, ptr);

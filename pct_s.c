@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:54:51 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/22 14:31:03 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 08:23:57 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	pct_ss(const char *restrict format, va_list ap)
 	int		nb2;
 
 	nb1 = 0;
-	nb2 = 0;
+	nb2 = -1;
 	while (format[++nb2])
 		if (format[nb2] == '*')
 			nb1++;
@@ -57,7 +57,7 @@ int			pct_ls(const char *restrict format, va_list ap)
 	int		nb2;
 
 	nb1 = 0;
-	nb2 = 0;
+	nb2 = -1;
 	while (format[++nb2])
 		if (format[nb2] == '*')
 			nb1++;
@@ -65,8 +65,8 @@ int			pct_ls(const char *restrict format, va_list ap)
 	res = (wchar_t*)va_arg(ap, wchar_t*);
 	if (res == NULL)
 		return (ft_putwstr_t(L"(null)"));
-	res = precis_wchar_t(res, format, nb2);
-	res = decal_wstr(&res, format, nb1);
+	res = precis_wchar_t(res, format, (int)nb2);
+	res = decal_wstr(&res, format, (int)nb1);
 	return (ft_putwstr_t(res));
 }
 
