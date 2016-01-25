@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/25 13:58:55 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/25 15:14:32 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,12 +145,12 @@ char	*aj_decal(char **ptr, const char *restrict format, int nb)
 			return (*ptr);
 	i = -1;
 	while (!(format[++i] >= '0' && format[i] <= '9'))
-		if (!format[i])
+		if (!format[i] || format[i] == '.')
 			break;
 	while (format[++j] != '*')
-		if (!format[j])
+		if (!format[j] || format[j] == '.')
 			break;
-	if ((j > i && format[j]) || (!format[i] && format[j]))
+	if ((j > i && format[j] && format[j] != '.') || (!format[i] && format[j] && format[j] != '.'))
 		i = j;
 	if (format[i - 1] == '.')
 		return (*ptr);
