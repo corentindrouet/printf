@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 10:23:01 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/25 12:04:56 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/26 08:37:24 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,8 @@ int			pct_lc(const char *restrict format, va_list ap)
 			nb1++;
 	init(&nb1, &nb2, ap);
 	res = (wchar_t)va_arg(ap, wchar_t);
-//	if (res == 0)
-//		return (1);
 	pr = (wchar_t*)malloc(sizeof(wchar_t) * 2);
+	pr[1] = 0;
 	pr[0] = res;
 	pr = decal_wstr(&pr, format, (int)nb1);
 	if (res == 0 && ft_wstrlen(pr) == 0)

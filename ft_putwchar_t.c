@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 13:49:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/21 09:01:15 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/26 08:31:02 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ static int	put_3o(char *str)
 	write(1, &i, 1);
 	i = ft_atoi_base(mask[2], 2);
 	write(1, &i, 1);
+	i = -1;
+	while (++i < 3)
+		free(mask[i]);
 	return (3);
 }
 
@@ -62,6 +65,9 @@ static int	put_4o(char *str)
 	write(1, &i, 1);
 	i = ft_atoi_base(mask[3], 2);
 	write(1, &i, 1);
+	i = -1;
+	while (++i < 4)
+		free(mask[i]);
 	return (4);
 }
 
@@ -84,6 +90,9 @@ static int	put_2o(char *str)
 	write(1, &i, 1);
 	i = ft_atoi_base(mask[1], 2);
 	write(1, &i, 1);
+	i = -1;
+	while (++i < 2)
+		free(mask[i]);
 	return (2);
 }
 

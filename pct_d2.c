@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/25 15:14:32 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/26 08:21:54 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ char	*aj_decal(char **ptr, const char *restrict format, int nb)
 	res = ft_strnew(sizeof(char) * (i + 1));
 	if (ft_strchr(format, '-') == NULL
 		&& (ft_strchr(format, '*') == NULL
-			|| (ft_strchr(format, '*') != NULL && nb >= 0)))
+			|| (ft_strchr(format, '*') != NULL && (nb >= 0 || (i != nb && i != -nb)))))
 		aj_decal_d(--i, ptr, res, c);
 	else
 		aj_decal_g(--i, format, res, ptr);
