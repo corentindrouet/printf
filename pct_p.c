@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:56:50 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/26 09:01:19 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/26 11:18:47 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		pct_p(const char *restrict format, va_list ap)
 {
-	void	*ptr;
+//	void	*ptr;
 	char	*res;
-	int		nb1;
+/*	int		nb1;
 	int		nb2;
 
 	nb1 = 0;
@@ -25,12 +25,13 @@ int		pct_p(const char *restrict format, va_list ap)
 		if (format[nb2] == '*')
 			nb1++;
 	init(&nb1, &nb2, ap);
-	ptr = (void*)va_arg(ap, void*);
 	res = ft_strnew(1);
 	res = ft_strjoin(res, ft_lltoa_base((long long)ptr, 16));
 	res = aj_zero(&res, format, nb2);
 	res = ft_strjoin("0x", res);
-	res = aj_decal(&res, format, nb1);
-	ft_putstr(res);
-	return (ft_strlen(res));
+	res = aj_decal(&res, format, nb1);*/
+	res = ft_strnew(1);
+	res = ft_strjoin("#", ft_strsub(format, 0, ft_strlen(format) - 1));
+	res = ft_strcat(res, "lxp");
+	return (pct_x(res, ap));
 }

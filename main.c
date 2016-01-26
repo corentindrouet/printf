@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:58:50 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/26 09:01:04 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/26 11:53:19 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ char	*width_str(char **ptr, const char *restrict format);
 int		main()
 {
 	char	*ptr = setlocale(LC_ALL, "");
-	char	str[20] = "{%05p}";
+	char	str[20] = "{%-15p}";
 
-	ft_printf(" | %d -- ft_printf\n", ft_printf(str, 0));
-	printf(" | %d -- printf\n", printf(str, 0));
+	ft_printf(" | %d -- ft_printf\n", ft_printf(str, str));
+	printf(" | %d -- printf\n", printf(str, str));
 /*	ft_printf(" | %d -- ft_printf\n", ft_printf("%4.1S", L"Jambon"));
 	printf(" | %d -- printf\n", printf("%+.10d", 123456789));
 	printf(" | %d -- printf\n", printf("%.4S", L"我是一只猫。"));

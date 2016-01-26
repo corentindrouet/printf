@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 09:59:37 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/21 08:45:29 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/26 11:58:59 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ static char	*ft_diese_x(const char *restrict format, char **ptr)
 {
 	char	*res;
 	int		i;
+	int		dec;
+	int		j;
 
 	i = 0;
 	while ((*ptr)[i] == ' ')
@@ -84,7 +86,14 @@ static char	*ft_diese_x(const char *restrict format, char **ptr)
 		(*ptr)[i + 1] = 'x';
 		return (*ptr);
 	}
-	else if (ft_strchr(format, '.') != NULL)
+	else if (ft_strchr(format, '.') != NULL && i >= 2)
+	{
+		res = ft_strsub(*ptr, 0, i - 2);
+		res = ft_strjoin(res, "0x");
+		res = ft_strjoin(res, ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i));
+		return (res);
+	}
+	else if (ft_strchr(format, '.') != NULL && i < 2)
 	{
 		res = ft_strsub(*ptr, 0, i);
 		res = ft_strjoin(res, "0x");
@@ -98,11 +107,15 @@ static char	*ft_diese_x(const char *restrict format, char **ptr)
 	}
 	else if (i <= 1)
 	{
-		if ((*ptr)[i] == '0')
+		if ((*ptr)[i] == '0' && ft_strchr(format, 'p') == NULL)
 			i++;
 		res = ft_strnew(3);
 		res = ft_strcpy(res, "0x");
-		res = ft_strjoin(res, ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i));
+		dec = 0;
+		j = ft_strlen(*ptr);
+		while ((*ptr)[--j] == ' ' && dec <= 2)
+			dec++;
+		res = ft_strjoin(res, ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i - dec));
 		return (res);
 	}
 	return (*ptr);
@@ -113,7 +126,7 @@ char		*ft_diese(const char *restrict format, char **ptr, int base, int m)
 	char	*res;
 
 	res = *ptr;
-	if (ft_atoi(*ptr) == 0)
+	if (ft_atoi(*ptr) == 0 && ft_strchr(format, 'p') == NULL)
 		return (*ptr);
 	if (base == 8)
 		res = ft_diese_o(ptr);
