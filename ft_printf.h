@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:36:36 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/25 14:55:16 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/26 14:07:37 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char	*ft_ulltoa_base(unsigned long long nbr, int base);
 int		recur_lltoa(unsigned long long nbr, char *ptr, int index);
 int		ft_printf(const char *restrict format, ...);
 int		pct_d(const char *restrict format, va_list ap);
+int		pct_b(const char *restrict format, va_list ap);
 int		pct_s(const char *restrict format, va_list ap);
 int		pct_gs(const char *restrict format, va_list ap);
 int		pct_p(const char *restrict format, va_list ap);

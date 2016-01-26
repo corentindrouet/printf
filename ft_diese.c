@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 09:59:37 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/26 11:58:59 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/26 12:49:25 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static char	*ft_diese_x(const char *restrict format, char **ptr)
 		res = ft_strcpy(res, "0x");
 		dec = 0;
 		j = ft_strlen(*ptr);
-		while ((*ptr)[--j] == ' ' && dec <= 2)
+		while ((*ptr)[--j] == ' ' && dec <= 2 && j > (int)(ft_strlen(*ptr) - 3))
 			dec++;
 		res = ft_strjoin(res, ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i - dec));
 		return (res);

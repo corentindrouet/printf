@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/25 13:14:04 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/26 14:05:35 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	f_init(int (**f)(const char *reformatict, va_list))
 	f[11] = &pct_gx;
 	f[12] = &pct_c;
 	f[13] = &pct_gc;
-	f[14] = &pct_pct;
+	f[14] = &pct_b;
+	f[15] = &pct_pct;
 }
 
 static int	verif_flag(const char *restrict format, int s, int e, va_list ap)
@@ -78,10 +79,10 @@ int			ft_printf(const char *restrict format, ...)
 	int		i[3];
 	int		s;
 	char	*ptr;
-	int		(*f[15])(const char *restrict, va_list);
+	int		(*f[16])(const char *restrict, va_list);
 
 	f_init(f);
-	ptr = "sSpdDioOuUxXcC%";
+	ptr = "sSpdDioOuUxXcCb%";
 	i[0] = 0;
 	i[1] = 0;
 	i[2] = 0;
@@ -93,7 +94,7 @@ int			ft_printf(const char *restrict format, ...)
 		i[0] += i[1];
 		i[1] = -1;
 		s = '\0';
-		while (++i[1] < 15)
+		while (++i[1] < 16)
 			if (cont_carac((char*)&format[i[0] + 1], ptr[i[1]]) >= 0)
 				if ((cont_carac((char*)&format[i[0] + 1], s) >
 					cont_carac((char*)&format[i[0] + 1], ptr[i[1]])))
