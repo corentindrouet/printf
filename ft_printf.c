@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/26 14:05:35 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/27 10:37:10 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ static int	verif_flag(const char *restrict format, int s, int e, va_list ap)
 	i = -1;
 	while (format[++i] && format[i] != s)
 		if (format[i] != '+' && format[i] != '-' && !(format[i] >= '0'
-			&& format[i] <= '9') && format[i] != ' ' && format[i] != '#'
+					&& format[i] <= '9') && format[i] != ' ' && format[i] != '#'
 				&& format[i] != 'h' && format[i] != 'l' && format[i] != 'j'
-					&& format[i] != 'z' && format[i] != '%' && format[i] != '.'
-						&& format[i] != '*')
+				&& format[i] != 'z' && format[i] != '%' && format[i] != '.'
+				&& format[i] != '*')
 			break ;
 	if (e == 1 && format[i] && format[i] != s)
 	{
@@ -87,38 +87,56 @@ int			ft_printf(const char *restrict format, ...)
 	i[1] = 0;
 	i[2] = 0;
 	va_start(ap, format);
-	while (((i[1] = cont_carac((char*)&format[i[0]], '%')) >= 0))
+	while (format[i[0] + i[1]])
 	{
-		write(1, &format[i[0]], i[1]);
-		i[2] += i[1];
-		i[0] += i[1];
-		i[1] = -1;
-		s = '\0';
-		while (++i[1] < 16)
-			if (cont_carac((char*)&format[i[0] + 1], ptr[i[1]]) >= 0)
-				if ((cont_carac((char*)&format[i[0] + 1], s) >
-					cont_carac((char*)&format[i[0] + 1], ptr[i[1]])))
-					s = ptr[i[1]];
-		i[1] = 0;
-		while (ptr[i[1]] != s && ptr[i[1]])
+		if (format[i[0] + i[1]] == '%')
+		{
+			write(1, &format[i[0]], i[1]);
+			i[2] += i[1];
+			i[0] += i[1];
+			i[1] = -1;
+			s = '\0';
+			while (++i[1] < 16)
+				if (cont_carac((char*)&format[i[0] + 1], ptr[i[1]]) >= 0)
+					if ((cont_carac((char*)&format[i[0] + 1], s) >
+								cont_carac((char*)&format[i[0] + 1], ptr[i[1]])))
+						s = ptr[i[1]];
+			i[1] = 0;
+			while (ptr[i[1]] != s && ptr[i[1]])
+				i[1]++;
+			if (i[1] != 15 && (verif_flag(ft_strsub(&format[i[0] + 1], 0,
+								cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) == -1))
+			{
+				i[2] += f[i[1]](ft_strsub(&format[i[0] + 1], 0,
+							cont_carac((char*)&format[i[0] + 1], s) + 1), ap);
+				if (s == '%')
+					i[0]++;
+				i[0] += cont_carac((char*)&format[i[0]], s) + 1;
+			}
+			else if (verif_flag(ft_strsub(&format[i[0] + 1], 0,
+							cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) != -1 || i[1] == 15)
+			{
+				i[2] += verif_flag(ft_strsub(&format[i[0] + 1], 0,
+							cont_carac((char*)&format[i[0]], s) + 1), s, 1, ap);
+				i[0] += verif_flag(ft_strsub(&format[i[0] + 1], 0,
+							cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) + 2;
+			}
+		}
+		else if (format[i[0] + i[1]] == '{')
+		{
+			write(1, &format[i[0]], i[1]);
+			i[2] += i[1];
+			i[0] += i[1];
+			i[1] = ft_color(ft_strsub(&format[i[0] + 1], 0, ft_strchr(&format[i[0] + 1], '}') - &format[i[0] + 1]));
+			if (i[1] > 0)
+				i[0] += (ft_strchr(&format[i[0]], '}') - &format[i[0]] + 1);
+			else
+				write(1, &format[i[0]++], 1);
+			i[2] += i[1];
+			i[1] = 0;
+		}
+		else
 			i[1]++;
-		if (i[1] != 15 && (verif_flag(ft_strsub(&format[i[0] + 1], 0,
-			cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) == -1))
-		{
-			i[2] += f[i[1]](ft_strsub(&format[i[0] + 1], 0,
-				cont_carac((char*)&format[i[0] + 1], s) + 1), ap);
-			if (s == '%')
-				i[0]++;
-			i[0] += cont_carac((char*)&format[i[0]], s) + 1;
-		}
-		else if (verif_flag(ft_strsub(&format[i[0] + 1], 0,
-			cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) != -1 || i[1] == 15)
-		{
-			i[2] += verif_flag(ft_strsub(&format[i[0] + 1], 0,
-				cont_carac((char*)&format[i[0]], s) + 1), s, 1, ap);
-			i[0] += verif_flag(ft_strsub(&format[i[0] + 1], 0,
-				cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) + 2;
-		}
 	}
 	i[2] += ft_strlen(&format[i[0]]);
 	ft_putstr(&format[i[0]]);

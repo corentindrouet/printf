@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:36:36 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/26 14:07:37 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/27 10:14:20 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+int		ft_color(char *color);
 int		ft_atoi(const char *str);
 char	*ft_ctoa_base(char nb, int base);
 int		ft_wstrlen(wchar_t *str);
