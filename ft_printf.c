@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/27 10:37:10 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/27 11:46:05 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ int			ft_printf(const char *restrict format, ...)
 	i[1] = 0;
 	i[2] = 0;
 	va_start(ap, format);
-	while (format[i[0] + i[1]])
+	while ((i[1] = cont_carac((char*)&format[i[0]], '%')) >= 0)
 	{
-		if (format[i[0] + i[1]] == '%')
-		{
+//		if (format[i[0] + i[1]] == '%')
+//		{
 			write(1, &format[i[0]], i[1]);
 			i[2] += i[1];
 			i[0] += i[1];
@@ -104,7 +104,7 @@ int			ft_printf(const char *restrict format, ...)
 			i[1] = 0;
 			while (ptr[i[1]] != s && ptr[i[1]])
 				i[1]++;
-			if (i[1] != 15 && (verif_flag(ft_strsub(&format[i[0] + 1], 0,
+			if (i[1] != 16 && (verif_flag(ft_strsub(&format[i[0] + 1], 0,
 								cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) == -1))
 			{
 				i[2] += f[i[1]](ft_strsub(&format[i[0] + 1], 0,
@@ -114,14 +114,14 @@ int			ft_printf(const char *restrict format, ...)
 				i[0] += cont_carac((char*)&format[i[0]], s) + 1;
 			}
 			else if (verif_flag(ft_strsub(&format[i[0] + 1], 0,
-							cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) != -1 || i[1] == 15)
+							cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) != -1 || i[1] == 16)
 			{
 				i[2] += verif_flag(ft_strsub(&format[i[0] + 1], 0,
 							cont_carac((char*)&format[i[0]], s) + 1), s, 1, ap);
 				i[0] += verif_flag(ft_strsub(&format[i[0] + 1], 0,
 							cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) + 2;
 			}
-		}
+/*		}
 		else if (format[i[0] + i[1]] == '{')
 		{
 			write(1, &format[i[0]], i[1]);
@@ -137,7 +137,7 @@ int			ft_printf(const char *restrict format, ...)
 		}
 		else
 			i[1]++;
-	}
+*/	}
 	i[2] += ft_strlen(&format[i[0]]);
 	ft_putstr(&format[i[0]]);
 	va_end(ap);
