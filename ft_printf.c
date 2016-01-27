@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/27 13:30:42 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/27 15:04:17 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int			ft_printf(const char *restrict format, ...)
 	int		(*f[16])(const char *restrict, va_list);
 
 	f_init(f);
-	ptr = "sSpdDioOuUxXcCb%";
+	ptr = "sSpdDioOuUxXcCbn%";
 	i[0] = 0;
 	i[1] = 0;
 	i[2] = 0;
@@ -94,7 +94,7 @@ int			ft_printf(const char *restrict format, ...)
 		i[0] += i[1];
 		i[1] = -1;
 		s = '\0';
-		while (++i[1] < 16)
+		while (++i[1] < 17)
 			if (cont_carac((char*)&format[i[0] + 1], ptr[i[1]]) >= 0)
 				if ((cont_carac((char*)&format[i[0] + 1], s) >
 							cont_carac((char*)&format[i[0] + 1], ptr[i[1]])))
@@ -102,7 +102,12 @@ int			ft_printf(const char *restrict format, ...)
 		i[1] = 0;
 		while (ptr[i[1]] != s && ptr[i[1]])
 			i[1]++;
-		if (i[1] != 16 && (verif_flag(ft_strsub(&format[i[0] + 1], 0,
+		if (s == 'n')
+		{
+			pct_n(i[2], ap, ft_strsub(&format[i[0] + 1], 0, cont_carac((char*)&format[i[0] + 1], s) + 1));
+			i[0] += cont_carac((char*)&format[i[0]], s) + 1;
+		}
+		else if (i[1] != 17 && (verif_flag(ft_strsub(&format[i[0] + 1], 0,
 							cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) == -1))
 		{
 			i[2] += f[i[1]](ft_strsub(&format[i[0] + 1], 0,
@@ -112,7 +117,7 @@ int			ft_printf(const char *restrict format, ...)
 			i[0] += cont_carac((char*)&format[i[0]], s) + 1;
 		}
 		else if (verif_flag(ft_strsub(&format[i[0] + 1], 0,
-						cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) != -1 || i[1] == 16)
+						cont_carac((char*)&format[i[0]], s) + 1), s, 0, ap) != -1 || i[1] == 17)
 		{
 			i[2] += verif_flag(ft_strsub(&format[i[0] + 1], 0,
 						cont_carac((char*)&format[i[0]], s) + 1), s, 1, ap);
