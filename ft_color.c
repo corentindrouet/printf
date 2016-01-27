@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 09:45:45 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/27 10:30:47 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/27 13:20:47 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,36 @@ int		ft_color(char *color)
 	prcolor = ft_strcat(prcolor, "m");
 	ft_putstr(prcolor);
 	return (ft_strlen(prcolor));
+}
+
+void	print_str_color(char *str)
+{
+	int		i;
+	char	*ptr;
+	char	*secur;
+
+	ptr = ft_strnew(ft_strlen(str) + 1);
+	ptr = ft_strcpy(ptr, str);
+	secur = ptr;
+	i = -1;
+	while (ptr[++i])
+	{
+		if (ptr[i] == '{')
+		{
+			write(1, ptr, i);
+			if (ft_color(ft_strsub(&ptr[i + 1], 0, cont_carac(&ptr[i + 1], '}'))) != 0)
+			{
+				ptr = ft_strchr(ptr, '}') + 1;
+				i = -1;
+			}
+			else
+			{
+				write(1, &ptr[i], 1);
+				ptr = &ptr[i + 1];
+				i = -1;
+			}
+		}
+	}
+	write(1, ptr, i);
+	free(secur);
 }

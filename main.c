@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:58:50 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/27 11:56:24 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/27 13:44:58 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ int		main()
 	char	lol[10] = "{cyan}";
 	int		i;
 
-//	ft_printf(" | %d -- ft_printf\n", ft_printf(str, "bonjour"));
-//	a = (a >> 1) << 1;
-//	ft_printf(" | %d -- ft_printf\n", ft_printf("", 42));
-	printf(" | %d -- printf\n", printf("\033[32m\033[7mbonjour\033[0m"));
+	
+//	ft_printf(" | %d -- ft_printf\n", ft_printf("{rouge}bonjour{eoc}%o", 42));
+//	printf(" | %d -- printf\n", printf("bonjour%oaurevoir", 42));
 	return (0);
 }
