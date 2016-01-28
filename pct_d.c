@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:39:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/25 08:22:44 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/28 13:31:17 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,16 @@ int		pct_d(const char *restrict format, va_list ap)
 int		pct_hhd(va_list ap, const char *restrict format)
 {
 	signed char	ptr;
-	int			convert;
 	char		*res;
 	int			nb1;
 	int			nb2;
 
 	nb1 = 0;
 	nb2 = -1;
-	while (format[++nb2])
-		if (format[nb2] == '*')
-			nb1++;
+	init_nb(&nb1, &nb2, format);
 	init(&nb1, &nb2, ap);
 	ptr = (signed char)va_arg(ap, int);
-	convert = ptr;
-	res = ft_itoa(convert);
+	res = ft_itoa((int)ptr);
 	res = aj_zero(&res, format, nb2);
 	res = aj_decal(&res, format, nb1);
 	if (ptr >= 0 && (ft_strchr(format, '+') != NULL))
@@ -74,9 +70,7 @@ int		pct_hd(va_list ap, const char *restrict format)
 
 	nb1 = 0;
 	nb2 = -1;
-	while (format[++nb2])
-		if (format[nb2] == '*')
-			nb1++;
+	init_nb(&nb1, &nb2, format);
 	init(&nb1, &nb2, ap);
 	i = (short)va_arg(ap, int);
 	res = ft_itoa((int)i);
@@ -105,9 +99,7 @@ int		pct_ld(va_list ap, const char *restrict format)
 
 	nb1 = 0;
 	nb2 = -1;
-	while (format[++nb2])
-		if (format[nb2] == '*')
-			nb1++;
+	init_nb(&nb1, &nb2, format);
 	init(&nb1, &nb2, ap);
 	i = va_arg(ap, long);
 	res = ft_lltoa((long long)i);
@@ -136,9 +128,7 @@ int		pct_lld(va_list ap, const char *restrict format)
 
 	nb1 = 0;
 	nb2 = -1;
-	while (format[++nb2])
-		if (format[nb2] == '*')
-			nb1++;
+	init_nb(&nb1, &nb2, format);
 	init(&nb1, &nb2, ap);
 	i = va_arg(ap, long long);
 	res = ft_lltoa(i);

@@ -6,11 +6,18 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 09:29:18 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/21 08:50:46 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/28 13:40:09 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void		init_nb(int *nb1, int *nb2, const char *restrict format)
+{
+	while (format[++(*nb2)])
+		if (format[(*nb2)] == '*')
+			(*nb1)++;
+}
 
 static int	recur_ultoa_b(unsigned long nbr, int base, char *ptr, int index)
 {

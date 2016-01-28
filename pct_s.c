@@ -6,32 +6,19 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:54:51 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/25 12:55:59 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/28 11:24:27 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	pct_ss(const char *restrict format, va_list ap)
+static char	*pct_ss2(const char *restrict format, int nb2, int nb1, char *ptr)
 {
-	char	*ptr;
 	char	*str;
 	int		i;
-	int		nb1;
-	int		nb2;
 
-	nb1 = 0;
-	nb2 = -1;
-	while (format[++nb2])
-		if (format[nb2] == '*')
-			nb1++;
-	init(&nb1, &nb2, ap);
-	ptr = (char*)va_arg(ap, char*);
 	if (ptr == NULL)
-	{
-		str = ft_strnew(7);
-		str = ft_strcpy(str, "(null)");
-	}
+		str = ft_strjoin("(nu", "ll)");
 	else
 	{
 		str = ft_strnew(ft_strlen(ptr) + 1);
@@ -51,6 +38,24 @@ static int	pct_ss(const char *restrict format, va_list ap)
 			str = ft_strsub(str, 0, nb2);
 	}
 	str = aj_decal(&str, format, nb1);
+	return (str);
+}
+
+static int	pct_ss(const char *restrict format, va_list ap)
+{
+	char	*ptr;
+	char	*str;
+	int		nb1;
+	int		nb2;
+
+	nb1 = 0;
+	nb2 = -1;
+	while (format[++nb2])
+		if (format[nb2] == '*')
+			nb1++;
+	init(&nb1, &nb2, ap);
+	ptr = (char*)va_arg(ap, char*);
+	str = pct_ss2(format, nb2, nb1, ptr);
 	ft_putstr(str);
 	return (ft_strlen(str));
 }

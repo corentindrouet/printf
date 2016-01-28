@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 10:23:01 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/26 08:37:24 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/28 11:16:46 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,28 @@
 static void	ft_putmem(char *str, int i)
 {
 	write(1, str, i);
+}
+
+static int	pct_cc2(char *str, char ptr, int nb1)
+{
+	int		i;
+
+	i = 0;
+	if (ptr == 0)
+	{
+		i = ft_strlen(&str[1]) + 1;
+		str[0] = '\0';
+		if (nb1 < 0)
+			ft_putmem(str, i);
+		else
+			ft_putmem(&str[1], i);
+		str[0] = ' ';
+	}
+	else
+		ft_putstr(str);
+	if (ft_strlen(str) == 0)
+		return (1);
+	return (ft_strlen(str));
 }
 
 static int	pct_cc(const char *restrict format, va_list ap)
@@ -39,21 +61,7 @@ static int	pct_cc(const char *restrict format, va_list ap)
 	str[0] = ptr;
 	if (format[i - 1] != '.')
 		str = aj_decal(&str, format, (int)nb1);
-	if (ptr == 0)
-	{
-		i = ft_strlen(&str[1]) + 1;
-		str[0] = '\0';
-		if (nb1 < 0)
-			ft_putmem(str, i);
-		else
-			ft_putmem(&str[1], i);
-		str[0] = ' ';
-	}
-	else
-		ft_putstr(str);
-	if (ft_strlen(str) == 0)
-		return (1);
-	return (ft_strlen(str));
+	return (pct_cc2(str, ptr, nb1));
 }
 
 int			pct_lc(const char *restrict format, va_list ap)

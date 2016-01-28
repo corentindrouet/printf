@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 09:59:37 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/26 12:49:25 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/28 11:09:10 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static char	*ft_diese_o(char **ptr)
 
 static char	*ft_diese_gx(const char *restrict format, char **ptr)
 {
-	char	*res;
 	int		i;
 
 	i = 0;
@@ -50,30 +49,20 @@ static char	*ft_diese_gx(const char *restrict format, char **ptr)
 		return (*ptr);
 	}
 	else if (ft_strchr(format, '.') != NULL)
-	{
-		res = ft_strsub(*ptr, 0, i);
-		res = ft_strjoin(res, "0X");
-		res = ft_strjoin(res, ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i));
-		return (res);
-	}
+		return (ft_strjoin(ft_strjoin(ft_strsub(*ptr, 0, i), "0X"),
+			ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i)));
 	else if (i > 1)
 	{
 		(*ptr)[i - 2] = '0';
 		(*ptr)[i - 1] = 'X';
 	}
 	else if (i <= 1)
-	{
-		res = ft_strnew(3);
-		res = ft_strcpy(res, "0X");
-		res = ft_strjoin(res, ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i));
-		return (res);
-	}
+		return (ft_strjoin("0X", ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i)));
 	return (*ptr);
 }
 
 static char	*ft_diese_x(const char *restrict format, char **ptr)
 {
-	char	*res;
 	int		i;
 	int		dec;
 	int		j;
@@ -87,19 +76,11 @@ static char	*ft_diese_x(const char *restrict format, char **ptr)
 		return (*ptr);
 	}
 	else if (ft_strchr(format, '.') != NULL && i >= 2)
-	{
-		res = ft_strsub(*ptr, 0, i - 2);
-		res = ft_strjoin(res, "0x");
-		res = ft_strjoin(res, ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i));
-		return (res);
-	}
+		return (ft_strjoin(ft_strjoin(ft_strsub(*ptr, 0, i - 2), "0x"),
+			ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i)));
 	else if (ft_strchr(format, '.') != NULL && i < 2)
-	{
-		res = ft_strsub(*ptr, 0, i);
-		res = ft_strjoin(res, "0x");
-		res = ft_strjoin(res, ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i));
-		return (res);
-	}
+		return (ft_strjoin(ft_strjoin(ft_strsub(*ptr, 0, i), "0x"),
+			ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i)));
 	else if (i > 1)
 	{
 		(*ptr)[i - 2] = '0';
@@ -109,14 +90,12 @@ static char	*ft_diese_x(const char *restrict format, char **ptr)
 	{
 		if ((*ptr)[i] == '0' && ft_strchr(format, 'p') == NULL)
 			i++;
-		res = ft_strnew(3);
-		res = ft_strcpy(res, "0x");
 		dec = 0;
 		j = ft_strlen(*ptr);
-		while ((*ptr)[--j] == ' ' && dec <= 2 && j > (int)(ft_strlen(*ptr) - 3))
+		while ((*ptr)[--j] == ' ' && dec <= 2
+			&& j > (int)(ft_strlen(*ptr) - 3))
 			dec++;
-		res = ft_strjoin(res, ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i - dec));
-		return (res);
+		return (ft_strjoin("0x", ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i - dec)));
 	}
 	return (*ptr);
 }

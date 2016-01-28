@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/27 15:04:17 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/28 10:22:15 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int			ft_printf(const char *restrict format, ...)
 	int		(*f[16])(const char *restrict, va_list);
 
 	f_init(f);
-	ptr = "sSpdDioOuUxXcCbn%";
+	ptr = "sSpdDioOuUxXcCb%n";
 	i[0] = 0;
 	i[1] = 0;
 	i[2] = 0;

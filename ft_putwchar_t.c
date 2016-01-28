@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 13:49:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/26 08:31:02 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/28 11:12:24 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,8 @@ static int	put_4o(char *str)
 	i = -1;
 	while ((ft_strlen(mask[0]) +
 		ft_strlen(ft_strsub(str, 0, ft_strlen(str) - 18))) < 8)
-		mask[0] = ft_strjoin(mask[0], "x");
+		mask[0] = ft_strjoin(mask[0], "0");
 	mask[0] = ft_strjoin(mask[0], ft_strsub(str, 0, ft_strlen(str) - 18));
-	while (mask[0][++i])
-		if (mask[0][i] == 'x')
-			mask[0][i] = '0';
 	i = ft_atoi_base(mask[0], 2);
 	write(1, &i, 1);
 	i = ft_atoi_base(mask[1], 2);

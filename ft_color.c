@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 09:45:45 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/27 13:20:47 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/28 10:23:01 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,14 @@ void	print_str_color(char *str)
 	char	*ptr;
 	char	*secur;
 
-	ptr = ft_strnew(ft_strlen(str) + 1);
-	ptr = ft_strcpy(ptr, str);
+	ptr = ft_strjoin("", str);
 	secur = ptr;
 	i = -1;
 	while (ptr[++i])
-	{
 		if (ptr[i] == '{')
 		{
 			write(1, ptr, i);
-			if (ft_color(ft_strsub(&ptr[i + 1], 0, cont_carac(&ptr[i + 1], '}'))) != 0)
+			if (ft_strchr(&str[i], '}') != NULL && ft_color(ft_strsub(&ptr[i + 1], 0, cont_carac(&ptr[i + 1], '}'))) != 0)
 			{
 				ptr = ft_strchr(ptr, '}') + 1;
 				i = -1;
@@ -84,7 +82,6 @@ void	print_str_color(char *str)
 				i = -1;
 			}
 		}
-	}
 	write(1, ptr, i);
 	free(secur);
 }

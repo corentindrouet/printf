@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:36:36 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/27 15:04:48 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/01/28 13:30:05 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+void	init_nb(int *nb1, int *nb2, const char *restrict format);
 void	pct_n(int n, va_list ap, const char *restrict format);
 void	print_str_color(char *str);
 int		ft_color(char *color);
