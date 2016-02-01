@@ -6,15 +6,38 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 09:42:40 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/01 09:47:25 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/01 10:08:16 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	print_nopct()
+static int	print_nopct(const char *restrict format, int i, va_list ap)
+{
+	char	c;
+	char	*ptr;
+	int		j;
 
-int	cont_carac(char *s, char c)
+	c = format[i];
+	j = 0;
+	while (format[j] && !ft_isdigit(format[j]) && format[j] != '*')
+		j++;
+	if (format[j])
+	{
+		if (format[j] == '*')
+			init(&i, &j, ap);
+		ptr = ft_strnew(2);
+		ptr[0] = c;
+		ptr = aj_decal(&ptr, format, j);
+		ft_putstr(ptr);
+		return (ft_strlen(ptr));
+	}
+	else
+		ft_putchar(c);
+	return (1);
+}
+
+int			cont_carac(char *s, char c)
 {
 	int		i;
 
@@ -25,7 +48,7 @@ int	cont_carac(char *s, char c)
 	return (i);
 }
 
-int	pct_pct(const char *restrict format, va_list ap)
+int			pct_pct(const char *restrict format, va_list ap)
 {
 	char	*res;
 
@@ -37,12 +60,9 @@ int	pct_pct(const char *restrict format, va_list ap)
 	return (ft_strlen(res));
 }
 
-int	verif_flag(const char *restrict format, int s, int e, va_list ap)
+int			verif_flag(const char *restrict format, int s, int e, va_list ap)
 {
 	int		i;
-	int		j;
-	char	*ptr;
-	char	c;
 
 	i = -1;
 	while (format[++i] && format[i] != s)
@@ -53,25 +73,7 @@ int	verif_flag(const char *restrict format, int s, int e, va_list ap)
 				&& format[i] != '*')
 			break ;
 	if (e == 1 && format[i] && format[i] != s)
-	{
-		c = format[i];
-		j = 0;
-		while (format[j] && !ft_isdigit(format[j]) && format[j] != '*')
-			j++;
-		if (format[j])
-		{
-			if (format[j] == '*')
-				init(&i, &j, ap);
-			ptr = ft_strnew(2);
-			ptr[0] = c;
-			ptr = aj_decal(&ptr, format, j);
-			ft_putstr(ptr);
-			return (ft_strlen(ptr));
-		}
-		else
-			ft_putchar(c);
-		return (1);
-	}
+		return (print_nopct(format, i, ap));
 	else if (e == 0 && format[i] && format[i] != s)
 		return (i);
 	return (-1);
