@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:58:50 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/28 10:19:40 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/01 09:40:50 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,10 @@ char	*ft_dtoa(double i)
 int		main()
 {
 	char	*ptr = setlocale(LC_ALL, "");
-	char	str[40] = "%%";
-//	char	lol[10] = "{cyan}";
-	int		i;
+	ssize_t	n;
+	ssize_t	m;
 
-	i = 5;
-//	ft_printf("bonjour%n%n%nb", &i, &i, &i);
-//	ft_printf("%d", i);
-	ft_printf(" | %d -- ft_printf\n", ft_printf(str, NULL));
-	printf(" | %d -- printf\n", printf(str, NULL));
+	ft_printf(" | %d -- ft_printf\n", ft_printf("%d-%zn-%zd", 10, &n, n));
+	printf(" | %d -- printf\n", printf("%d-%zn-%zd", 10, &m, m));
 	return (0);
 }

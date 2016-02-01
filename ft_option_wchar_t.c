@@ -6,13 +6,13 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 11:47:00 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/22 14:37:31 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/01 09:17:04 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		nbr_bytes_wchar(wchar_t s)
+int				nbr_bytes_wchar(wchar_t s)
 {
 	unsigned int	wc;
 	char			*str;
@@ -29,7 +29,7 @@ int		nbr_bytes_wchar(wchar_t s)
 		return (4);
 }
 
-int		nbr_bytes_wstr(wchar_t *str)
+int				nbr_bytes_wstr(wchar_t *str)
 {
 	int		i;
 	int		res;
@@ -41,54 +41,53 @@ int		nbr_bytes_wstr(wchar_t *str)
 	return (res);
 }
 
-wchar_t	*decal_wstr(wchar_t **str, const char *restrict format, int nb)
+static wchar_t	*decal_sf(wchar_t **str, wchar_t *ptr, int decal)
+{
+	int	i;
+	int	j;
+
+	ptr[0] = 0;
+	ft_wstrcat(ptr, *str);
+	i = 0;
+	while (ptr[i] != 0)
+		i++;
+	j = -1;
+	while (++j < (decal - nbr_bytes_wstr(*str)))
+		ptr[i++] = ' ';
+	ptr[i] = 0;
+	return (ptr);
+}
+
+wchar_t			*decal_wstr(wchar_t **str, const char *restrict format, int nb)
 {
 	wchar_t	*ptr;
-	int		i;
-	int		j;
 	char	c;
-	int		decal;
+	int		i;
 
 	i = -1;
-	while (format[++i])
-		if ((format[i] >= '0' && format[i] <= '9') || format[i] == '*')
-			break ;
-		else if (format[i] == '.')
+	while (!(format[++i] >= '0' && format[i] <= '9') && format[i] != '*')
+		if (!format[i] || format[i] == '.')
 			return (*str);
 	c = ' ';
 	if (format[i] == '0')
 		c = '0';
 	if (format[i] == '*')
-		decal = nb;
+		i = nb;
 	else
-		decal = ft_atoi(&format[i]);
-	if (decal <= nbr_bytes_wstr(*str))
+		i = ft_atoi(&format[i]);
+	if (i <= nbr_bytes_wstr(*str))
 		return (*str);
-	ptr = (wchar_t*)malloc(sizeof(wchar_t) * (decal + 1));
-	if (ft_strchr(format, '-') == NULL)
-	{
-		decal = decal - nbr_bytes_wstr(*str);
-		ptr[decal] = 0;
-		while (--decal >= 0)
-			ptr[decal] = c;
-		return (ft_wstrcat(ptr, (*str)));
-	}
-	else
-	{
-		ptr[0] = 0;
-		ft_wstrcat(ptr, *str);
-		i = 0;
-		while (ptr[i] != 0)
-			i++;
-		j = -1;
-		while (++j < (decal - nbr_bytes_wstr(*str)))
-			ptr[i++] = ' ';
-		ptr[i] = 0;
-		return (ptr);
-	}
+	ptr = (wchar_t*)malloc(sizeof(wchar_t) * (i + 1));
+	if (ft_strchr(format, '-') != NULL)
+		return (decal_sf(str, ptr, i));
+	i = i - nbr_bytes_wstr(*str);
+	ptr[i] = 0;
+	while (--i >= 0)
+		ptr[i] = c;
+	return (ft_wstrcat(ptr, (*str)));
 }
 
-wchar_t	*ft_wstrcat(wchar_t *dest, wchar_t *src)
+wchar_t			*ft_wstrcat(wchar_t *dest, wchar_t *src)
 {
 	int		i;
 	int		j;

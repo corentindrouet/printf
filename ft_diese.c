@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 09:59:37 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/28 11:09:10 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/01 08:27:32 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,24 @@ static char	*ft_diese_gx(const char *restrict format, char **ptr)
 	return (*ptr);
 }
 
+static char	*ft_diese_x2(const char *restrict format, char **p, int i)
+{
+	int	j;
+	int	dec;
+
+	if ((*p)[i] == '0' && ft_strchr(format, 'p') == NULL)
+		i++;
+	dec = 0;
+	j = ft_strlen(*p);
+	while ((*p)[--j] == ' ' && dec <= 2
+		&& j > (int)(ft_strlen(*p) - 3))
+		dec++;
+	return (ft_strjoin("0x", ft_strsub(*p, i, (int)ft_strlen(*p) - i - dec)));
+}
+
 static char	*ft_diese_x(const char *restrict format, char **ptr)
 {
 	int		i;
-	int		dec;
-	int		j;
 
 	i = 0;
 	while ((*ptr)[i] == ' ')
@@ -87,16 +100,7 @@ static char	*ft_diese_x(const char *restrict format, char **ptr)
 		(*ptr)[i - 1] = 'x';
 	}
 	else if (i <= 1)
-	{
-		if ((*ptr)[i] == '0' && ft_strchr(format, 'p') == NULL)
-			i++;
-		dec = 0;
-		j = ft_strlen(*ptr);
-		while ((*ptr)[--j] == ' ' && dec <= 2
-			&& j > (int)(ft_strlen(*ptr) - 3))
-			dec++;
-		return (ft_strjoin("0x", ft_strsub(*ptr, i, (int)ft_strlen(*ptr) - i - dec)));
-	}
+		return (ft_diese_x2(format, ptr, i));
 	return (*ptr);
 }
 

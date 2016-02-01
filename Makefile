@@ -6,7 +6,7 @@
 #    By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/04 13:04:33 by cdrouet           #+#    #+#              #
-#    Updated: 2016/01/28 13:43:54 by cdrouet          ###   ########.fr        #
+#    Updated: 2016/02/01 09:43:27 by cdrouet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ SRC = ft_printf.c \
 	  ft_color.c \
 	  pct_n.c \
 	  ft_decal.c \
+	  spec_f3.c \
 
 BIN = $(SRC:.c=.o)
 

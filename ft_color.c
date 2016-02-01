@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 09:45:45 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/28 10:23:01 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/01 08:38:47 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	**init_color(void)
 	return (ptr);
 }
 
-int		ft_color(char *color)
+int			ft_color(char *color)
 {
 	char	**ptr;
 	int		i;
@@ -43,7 +43,7 @@ int		ft_color(char *color)
 	i = -1;
 	while (++i < 9)
 		if (!ft_strcmp(color, ptr[i]))
-			break;
+			break ;
 	if (i == 9)
 		return (0);
 	prcolor = ft_strnew(8);
@@ -57,7 +57,14 @@ int		ft_color(char *color)
 	return (ft_strlen(prcolor));
 }
 
-void	print_str_color(char *str)
+static void	print_else(char **ptr, int *i)
+{
+	write(1, &(*ptr)[(*i)], 1);
+	(*ptr) = &(*ptr)[(*i) + 1];
+	(*i) = -1;
+}
+
+void		print_str_color(char *str)
 {
 	int		i;
 	char	*ptr;
@@ -70,17 +77,15 @@ void	print_str_color(char *str)
 		if (ptr[i] == '{')
 		{
 			write(1, ptr, i);
-			if (ft_strchr(&str[i], '}') != NULL && ft_color(ft_strsub(&ptr[i + 1], 0, cont_carac(&ptr[i + 1], '}'))) != 0)
+			if (ft_strchr(&str[i], '}') != NULL &&
+				ft_color(ft_strsub(&ptr[i + 1], 0,
+					cont_carac(&ptr[i + 1], '}'))) != 0)
 			{
 				ptr = ft_strchr(ptr, '}') + 1;
 				i = -1;
 			}
 			else
-			{
-				write(1, &ptr[i], 1);
-				ptr = &ptr[i + 1];
-				i = -1;
-			}
+				print_else(&ptr, &i);
 		}
 	write(1, ptr, i);
 	free(secur);
