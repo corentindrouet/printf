@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:39:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/28 13:31:17 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/02 08:21:15 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		pct_hhd(va_list ap, const char *restrict format)
 	else if (ptr > 0 && (ft_strchr(format, '+') == NULL)
 		&& (ft_strchr(format, ' ') != NULL))
 	{
-		if (res[0] == '0')
+		if (!ft_strchr(format, '.') && (res[0] == '0' || res[0] == ' '))
 			res[0] = ' ';
 		else
 			res = ft_strjoin(" ", res);
@@ -81,7 +81,7 @@ int		pct_hd(va_list ap, const char *restrict format)
 	else if (i >= 0 && (ft_strchr(format, '+') == NULL)
 		&& (ft_strchr(format, ' ') != NULL))
 	{
-		if (res[0] == '0')
+		if (!ft_strchr(format, '.') && (res[0] == '0' || res[0] == ' '))
 			res[0] = ' ';
 		else
 			res = ft_strjoin(" ", res);
@@ -110,7 +110,7 @@ int		pct_ld(va_list ap, const char *restrict format)
 	else if (i > 0 && (ft_strchr(format, '+') == NULL)
 		&& (ft_strchr(format, ' ') != NULL))
 	{
-		if (res[0] == '0')
+		if (!ft_strchr(format, '.') && (res[0] == '0' || res[0] == ' '))
 			res[0] = ' ';
 		else
 			res = ft_strjoin(" ", res);
@@ -139,7 +139,7 @@ int		pct_lld(va_list ap, const char *restrict format)
 	else if (i > 0 && (ft_strchr(format, '+') == NULL)
 		&& (ft_strchr(format, ' ') != NULL))
 	{
-		if (res[0] == '0')
+		if (!ft_strchr(format, '.') && (res[0] == '0' || res[0] == ' '))
 			res[0] = ' ';
 		else
 			res = ft_strjoin(" ", res);

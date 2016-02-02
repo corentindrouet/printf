@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/01 15:11:27 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/02 08:21:17 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		pct_jd(va_list ap, const char *restrict format)
 	else if (i > 0 && (ft_strchr(format, '+') == NULL)
 		&& (ft_strchr(format, ' ') != NULL))
 	{
-		if (res[0] == '0')
+		if (!ft_strchr(format, '.') && (res[0] == '0' || res[0] == ' '))
 			res[0] = ' ';
 		else
 			res = ft_strjoin(" ", res);
@@ -61,7 +61,7 @@ int		pct_zd(va_list ap, const char *restrict format)
 	else if (i > 0 && (ft_strchr(format, '+') == NULL)
 		&& (ft_strchr(format, ' ') != NULL))
 	{
-		if (res[0] == '0')
+		if (!ft_strchr(format, '.') && (res[0] == '0' || res[0] == ' '))
 			res[0] = ' ';
 		else
 			res = ft_strjoin(" ", res);
@@ -90,7 +90,7 @@ int		pct_dd(va_list ap, const char *restrict format)
 	else if (i >= 0 && (ft_strchr(format, '+') == NULL)
 		&& (ft_strchr(format, ' ') != NULL))
 	{
-		if (res[0] == '0')
+		if (!ft_strchr(format, '.') && (res[0] == '0' || res[0] == ' '))
 			res[0] = ' ';
 		else
 			res = ft_strjoin(" ", res);

@@ -5,26 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/16 12:58:50 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/01 14:45:06 by cdrouet          ###   ########.fr       */
+/*   Created: 2016/02/02 08:06:18 by cdrouet           #+#    #+#             */
+/*   Updated: 2016/02/02 09:04:48 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-#include "ft_printf.h"
 #include <stdio.h>
 #include <wchar.h>
+#include <stdlib.h>
 #include <locale.h>
+#include "ft_printf.h"
 
-char	*precis_str(char **ptr, const char *restrict format);
-char	*width_str(char **ptr, const char *restrict format);
-
-int		main()
+int	main()
 {
-	char	*ptr = setlocale(LC_ALL, "");
-	char	str[50] = "%+06d";
+	setlocale(LC_ALL, "");
+	char	str[250] = "% 5d, %c, % +07.8d, % o, % 0hd, % ji, %#-7.2o, %%%%, %-+5.5d, % 9.3s, %#8.1X, %C";
 
-	ft_printf(" | %d -- ft_printf\n", ft_printf(str, 1234));
-	printf(" | %d -- printf\n", printf(str, 1234));
-	return (0);
+	ft_printf("| %d ft_printf\n", ft_printf(str, 123, 'y', 123, 123, 123, 123, 123, 123, "bonjour", 123, L'繁'));
+	printf("| %d printf\n", printf(str, 123, 'y', 123, 123, 123, 123, 123, 123, "bonjour", 123, L'繁'));
 }
