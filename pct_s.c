@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 09:54:51 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/01 14:09:08 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/02 13:08:11 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static char	*pct_ss2(const char *restrict format, int nb2, int nb1, char *ptr)
 		str = ft_strjoin("(nu", "ll)");
 	else
 	{
-		str = ft_strnew(ft_strlen(ptr) + 1);
-		ft_strcpy(str, ptr);
+		str = ft_strjoin("", ptr);
 	}
 	if (ft_strchr(format, '.') != NULL)
 	{

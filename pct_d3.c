@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 14:01:57 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/26 08:04:29 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/02 11:13:30 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static char	*aj_zero_pos(char **ptr, const char *restrict format, int i)
 	l = 0;
 	if (i <= (int)ft_strlen(*ptr))
 		return (*ptr);
-	if (ft_strchr(format, '+') != NULL)
+	if (ft_strchr(format, '+') != NULL
+		&& (!ft_strchr(format, 'u') && !ft_strchr(format, 'U')))
 		i++;
 	res = (char*)ft_strnew(sizeof(char) * (i + 1));
 	while (l < (i - (int)ft_strlen(*ptr)))
