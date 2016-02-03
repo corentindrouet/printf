@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:42:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/02 10:37:29 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/03 09:16:46 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ int		pct_oo(va_list ap, const char *restrict format, int base, int maj)
 	init(&nb1, &nb2, ap);
 	ptr = (unsigned int)va_arg(ap, unsigned int);
 	res = ft_uitoa_base((unsigned int)ptr, base);
-	if (!(ft_strchr(format, '#') && ptr == 0) || base == 16)
-		res = aj_zero(&res, format, (int)nb2);
+	res = aj_zero(&res, format, (int)nb2);
 	res = aj_decal(&res, format, (int)nb1);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);

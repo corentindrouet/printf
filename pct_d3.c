@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 14:01:57 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/02 11:13:30 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/03 11:36:53 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static char	*aj_zero_pos(char **ptr, const char *restrict format, int i)
 	if (i <= (int)ft_strlen(*ptr))
 		return (*ptr);
 	if (ft_strchr(format, '+') != NULL
-		&& (!ft_strchr(format, 'u') && !ft_strchr(format, 'U')))
+		&& (!ft_strchr(format, 'u') && !ft_strchr(format, 'U')
+			&& !ft_strchr(format, 'p')))
 		i++;
 	res = (char*)ft_strnew(sizeof(char) * (i + 1));
 	while (l < (i - (int)ft_strlen(*ptr)))
@@ -67,7 +68,9 @@ char		*aj_zero(char **ptr, const char *restrict format, int nb)
 	}
 	else
 		i = ft_atoi(&format[++i]);
-	if (i == 0 && ft_atoi(*ptr) == 0)
+	if ((i == 0 && ft_atoi(*ptr) == 0 && (!ft_strchr(format, '#')
+		|| ft_strchr(format, 'x') || ft_strchr(format, 'X')))
+		|| (ft_strchr(format, 'p') && i == 0 && ft_atoi(*ptr) == 0))
 		(*ptr)[0] = '\0';
 	if (ft_atoi(*ptr) < 0)
 		return (aj_zero_neg(ptr, i));
@@ -106,7 +109,10 @@ void		aj_decal_g(int i, const char *restrict format, char *res, char **p)
 
 	j = ft_strlen(*p);
 	ft_strcpy(res, *p);
-	if (ft_strchr(format, '+') != NULL)
+	if (ft_strchr(format, '+') != NULL && !ft_strchr(format, 's')
+		&& !ft_strchr(format, 'p'))
+		i--;
+	if (ft_strchr(format, ' '))
 		i--;
 	while (j < (i + 1))
 		res[j++] = ' ';

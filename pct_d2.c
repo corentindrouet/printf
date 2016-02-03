@@ -6,97 +6,97 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:26:05 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/02 08:21:17 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/03 11:54:38 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		pct_jd(va_list ap, const char *restrict format)
+int		pct_jd(va_list ap, const char *restrict f)
 {
 	intmax_t	i;
-	char		*res;
+	char		*r;
 	int			nb1;
 	int			nb2;
 
 	nb1 = 0;
 	nb2 = -1;
-	init_nb(&nb1, &nb2, format);
+	init_nb(&nb1, &nb2, f);
 	init(&nb1, &nb2, ap);
 	i = va_arg(ap, intmax_t);
-	res = ft_lltoa((long long)i);
-	res = aj_zero(&res, format, nb2);
-	res = aj_decal(&res, format, nb1);
-	if (i >= 0 && (ft_strchr(format, '+') != NULL))
-		res = aj_plus(&res);
-	else if (i > 0 && (ft_strchr(format, '+') == NULL)
-		&& (ft_strchr(format, ' ') != NULL))
+	r = ft_lltoa((long long)i);
+	r = aj_zero(&r, f, nb2);
+	r = aj_decal(&r, f, nb1);
+	if (i >= 0 && (ft_strchr(f, '+') != NULL))
+		r = aj_plus(&r);
+	else if (i >= 0 && (ft_strchr(f, '+') == NULL)
+		&& (ft_strchr(f, ' ') != NULL))
 	{
-		if (!ft_strchr(format, '.') && (res[0] == '0' || res[0] == ' '))
-			res[0] = ' ';
+		if (!ft_strchr(f, '.') && (r[0] == '0' || r[0] == ' ') && r[1] != '\0')
+			r[0] = ' ';
 		else
-			res = ft_strjoin(" ", res);
+			r = ft_strjoin(" ", r);
 	}
-	ft_putstr(res);
-	return (ft_strlen(res));
+	ft_putstr(r);
+	return (ft_strlen(r));
 }
 
-int		pct_zd(va_list ap, const char *restrict format)
+int		pct_zd(va_list ap, const char *restrict f)
 {
 	ssize_t	i;
-	char	*res;
+	char	*r;
 	int		nb1;
 	int		nb2;
 
 	nb1 = 0;
 	nb2 = -1;
-	init_nb(&nb1, &nb2, format);
+	init_nb(&nb1, &nb2, f);
 	init(&nb1, &nb2, ap);
 	i = va_arg(ap, size_t);
-	res = ft_lltoa((long long)i);
-	res = aj_zero(&res, format, (int)nb2);
-	res = aj_decal(&res, format, (int)nb1);
-	if (i >= 0 && (ft_strchr(format, '+') != NULL))
-		res = aj_plus(&res);
-	else if (i > 0 && (ft_strchr(format, '+') == NULL)
-		&& (ft_strchr(format, ' ') != NULL))
+	r = ft_lltoa((long long)i);
+	r = aj_zero(&r, f, (int)nb2);
+	r = aj_decal(&r, f, (int)nb1);
+	if (i >= 0 && (ft_strchr(f, '+') != NULL))
+		r = aj_plus(&r);
+	else if (i >= 0 && (ft_strchr(f, '+') == NULL)
+		&& (ft_strchr(f, ' ') != NULL))
 	{
-		if (!ft_strchr(format, '.') && (res[0] == '0' || res[0] == ' '))
-			res[0] = ' ';
+		if (!ft_strchr(f, '.') && (r[0] == '0' || r[0] == ' ') && r[1] != '\0')
+			r[0] = ' ';
 		else
-			res = ft_strjoin(" ", res);
+			r = ft_strjoin(" ", r);
 	}
-	ft_putstr(res);
-	return (ft_strlen(res));
+	ft_putstr(r);
+	return (ft_strlen(r));
 }
 
-int		pct_dd(va_list ap, const char *restrict format)
+int		pct_dd(va_list ap, const char *restrict f)
 {
 	int		i;
-	char	*res;
+	char	*r;
 	int		nb1;
 	int		nb2;
 
 	nb1 = 0;
 	nb2 = -1;
-	init_nb(&nb1, &nb2, format);
+	init_nb(&nb1, &nb2, f);
 	init(&nb1, &nb2, ap);
 	i = va_arg(ap, int);
-	res = ft_itoa(i);
-	res = aj_zero(&res, format, (int)nb2);
-	res = aj_decal(&res, format, (int)nb1);
-	if (i >= 0 && (ft_strchr(format, '+') != NULL))
-		res = aj_plus(&res);
-	else if (i >= 0 && (ft_strchr(format, '+') == NULL)
-		&& (ft_strchr(format, ' ') != NULL))
+	r = ft_itoa(i);
+	r = aj_zero(&r, f, (int)nb2);
+	r = aj_decal(&r, f, (int)nb1);
+	if (i >= 0 && (ft_strchr(f, '+') != NULL))
+		r = aj_plus(&r);
+	else if (i >= 0 && (ft_strchr(f, '+') == NULL)
+		&& (ft_strchr(f, ' ') != NULL))
 	{
-		if (!ft_strchr(format, '.') && (res[0] == '0' || res[0] == ' '))
-			res[0] = ' ';
+		if (!ft_strchr(f, '.') && (r[0] == '0' || r[0] == ' ') && r[1] != '\0')
+			r[0] = ' ';
 		else
-			res = ft_strjoin(" ", res);
+			r = ft_strjoin(" ", r);
 	}
-	ft_putstr(res);
-	return (ft_strlen(res));
+	ft_putstr(r);
+	return (ft_strlen(r));
 }
 
 char	*aj_plus(char **ptr)
@@ -113,7 +113,7 @@ char	*aj_plus(char **ptr)
 		}
 	i = -1;
 	while ((*ptr)[++i] == ' ')
-		if ((*ptr)[i + 1] != ' ')
+		if ((*ptr)[i + 1] != ' ' && (*ptr)[i + 1])
 		{
 			(*ptr)[i] = '+';
 			return (*ptr);

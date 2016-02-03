@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 09:59:37 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/02 08:50:19 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/03 11:43:33 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ static char	*ft_diese_x(const char *restrict format, char **ptr)
 	i = 0;
 	while ((*ptr)[i] == ' ')
 		i++;
+	if (!(*ptr)[i])
+		i = 0;
 	if ((*ptr)[i] == '0' && (*ptr)[i + 1] == '0' && !ft_strchr(format, '.'))
 	{
 		(*ptr)[i + 1] = 'x';
