@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:36:36 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/01 09:44:55 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/03 15:08:40 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+char	*width_d(char **ptr, const char *restrict format, int nbr);
+char	*plus_d(char **ptr, const char *restrict format, long long i);
+char	*precis_d(char **ptr, const char *restrict format, int nbr);
 int		verif_flag(const char *restrict format, int s, int e, va_list ap);
 void	init_nb(int *nb1, int *nb2, const char *restrict format);
 void	pct_n(int n, va_list ap, const char *restrict format);
@@ -51,7 +54,7 @@ void	init(int *nb1, int *nb2, va_list ap);
 char	*aj_zero(char **ptr, const char *restrict format, int nb);
 char	*aj_decal(char **ptr, const char *restrict format, int nb);
 int		cont_carac(char *s, char c);
-char	*aj_plus(char **ptr);
+char	*aj_plus(char **ptr, const char *restrict format, int j);
 char	*ft_itoa_base(int nb, int base);
 char	*ft_ltoa_base(long nb, int base);
 char	*ft_itoa(int n);

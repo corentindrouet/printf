@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 12:39:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/03 08:15:32 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/03 15:14:35 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		pct_d(const char *restrict format, va_list ap)
 
 int		pct_hhd(va_list ap, const char *restrict f)
 {
-	signed char	ptr;
+	signed char	i;
 	char		*r;
 	int			nb1;
 	int			nb2;
@@ -43,13 +43,15 @@ int		pct_hhd(va_list ap, const char *restrict f)
 	nb2 = -1;
 	init_nb(&nb1, &nb2, f);
 	init(&nb1, &nb2, ap);
-	ptr = (signed char)va_arg(ap, int);
-	r = ft_itoa((int)ptr);
-	r = aj_zero(&r, f, nb2);
-	r = aj_decal(&r, f, nb1);
-	if (ptr >= 0 && (ft_strchr(f, '+') != NULL))
-		r = aj_plus(&r);
-	else if (ptr >= 0 && (ft_strchr(f, '+') == NULL)
+	i = (signed char)va_arg(ap, int);
+	if (i >= 0)
+		r = ft_itoa(i);
+	else
+		r = ft_strsub(ft_itoa(i), 1, ft_strlen(ft_itoa(i)) - 1);
+	r = precis_d(&r, f, nb2);
+	r = plus_d(&r, f, i);
+	r = width_d(&r, f, nb1);
+	if (i >= 0 && (ft_strchr(f, '+') == NULL)
 		&& (ft_strchr(f, ' ') != NULL))
 	{
 		if (!ft_strchr(f, '.') && (r[0] == '0' || r[0] == ' ') && r[1] != '\0')
@@ -73,12 +75,14 @@ int		pct_hd(va_list ap, const char *restrict f)
 	init_nb(&nb1, &nb2, f);
 	init(&nb1, &nb2, ap);
 	i = (short)va_arg(ap, int);
-	r = ft_itoa((int)i);
-	r = aj_zero(&r, f, nb2);
-	r = aj_decal(&r, f, nb1);
-	if (i >= 0 && (ft_strchr(f, '+') != NULL))
-		r = aj_plus(&r);
-	else if (i >= 0 && (ft_strchr(f, '+') == NULL)
+	if (i >= 0)
+		r = ft_itoa(i);
+	else
+		r = ft_strsub(ft_itoa(i), 1, ft_strlen(ft_itoa(i)) - 1);
+	r = precis_d(&r, f, nb2);
+	r = plus_d(&r, f, i);
+	r = width_d(&r, f, nb1);
+	if (i >= 0 && (ft_strchr(f, '+') == NULL)
 		&& (ft_strchr(f, ' ') != NULL))
 	{
 		if (!ft_strchr(f, '.') && (r[0] == '0' || r[0] == ' ') && r[1] != '\0')
@@ -102,12 +106,14 @@ int		pct_ld(va_list ap, const char *restrict f)
 	init_nb(&nb1, &nb2, f);
 	init(&nb1, &nb2, ap);
 	i = va_arg(ap, long);
-	r = ft_lltoa((long long)i);
-	r = aj_zero(&r, f, nb2);
-	r = aj_decal(&r, f, nb1);
-	if (i >= 0 && (ft_strchr(f, '+') != NULL))
-		r = aj_plus(&r);
-	else if (i >= 0 && (ft_strchr(f, '+') == NULL)
+	if (i >= 0)
+		r = ft_lltoa((long long)i);
+	else
+		r = ft_strsub(ft_lltoa(i), 1, ft_strlen(ft_lltoa(i)) - 1);
+	r = precis_d(&r, f, nb2);
+	r = plus_d(&r, f, i);
+	r = width_d(&r, f, nb1);
+	if (i >= 0 && (ft_strchr(f, '+') == NULL)
 		&& (ft_strchr(f, ' ') != NULL))
 	{
 		if (!ft_strchr(f, '.') && (r[0] == '0' || r[0] == ' ') && r[1] != '\0')
@@ -131,12 +137,14 @@ int		pct_lld(va_list ap, const char *restrict f)
 	init_nb(&nb1, &nb2, f);
 	init(&nb1, &nb2, ap);
 	i = va_arg(ap, long long);
-	r = ft_lltoa(i);
-	r = aj_zero(&r, f, nb2);
-	r = aj_decal(&r, f, nb1);
-	if (i >= 0 && (ft_strchr(f, '+') != NULL))
-		r = aj_plus(&r);
-	else if (i >= 0 && (ft_strchr(f, '+') == NULL)
+	if (i >= 0)
+		r = ft_lltoa((long long)i);
+	else
+		r = ft_strsub(ft_lltoa(i), 1, ft_strlen(ft_lltoa(i)) - 1);
+	r = precis_d(&r, f, nb2);
+	r = plus_d(&r, f, i);
+	r = width_d(&r, f, nb1);
+	if (i >= 0 && (ft_strchr(f, '+') == NULL)
 		&& (ft_strchr(f, ' ') != NULL))
 	{
 		if (!ft_strchr(f, '.') && (r[0] == '0' || r[0] == ' ') && r[1] != '\0')

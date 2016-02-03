@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 09:59:37 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/03 11:43:33 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/03 15:31:52 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static char	*ft_diese_o(char **ptr)
 	i = 0;
 	while ((*ptr)[i] == ' ')
 		i++;
+	if (i == 0 && ft_strlen(*ptr) == 0)
+		(*ptr)[0] = '0';
 	if ((*ptr)[i] == '0')
 		return (*ptr);
 	else if (i > 0)
@@ -118,7 +120,8 @@ char		*ft_diese(const char *restrict format, char **ptr, int base, int m)
 	char	*res;
 
 	res = *ptr;
-	if (ft_atoi(*ptr) == 0 && ft_strchr(format, 'p') == NULL)
+	if (ft_atoi(*ptr) == 0 && ft_strchr(format, 'p') == NULL
+		&& !ft_strchr(format, 'o') && !ft_strchr(format, 'O'))
 		return (*ptr);
 	if (base == 8)
 		res = ft_diese_o(ptr);

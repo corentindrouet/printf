@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 08:06:18 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/03 10:31:29 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/03 15:42:25 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,14 @@ int	main()
 				}
 				else
 				{
-					ft_printf("| %d | %s\n", ft_printf(str, 0), str);
-//					printf("| %d | %s\n", printf(str, 0), str);
+					if (spec[i] == 'c' || spec[i] == 'C')
+						ft_printf("| %d | %s\n", ft_printf(str, 0 + 'a'), str);
+					else
+						ft_printf("| %d | %s\n", ft_printf(str, 0), str);
+//					if (spec[i] == 'c' || spec[i] == 'C')
+//						printf("| %d | %s\n", printf(str, 0 + 'a'), str);
+//					else
+//						printf("| %d | %s\n", printf(str, 0), str);
 				}
 			}
 		}
