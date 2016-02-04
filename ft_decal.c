@@ -6,13 +6,13 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 13:42:53 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/03 11:36:54 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/04 09:01:21 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	star_or_nb(const char *restrict f)
+int			star_or_nb(const char *restrict f)
 {
 	int	i;
 	int	j;

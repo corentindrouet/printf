@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 11:32:20 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/02 11:50:02 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/04 14:28:11 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,24 @@ static void	init_i_s(const char *restrict format, int *i, char *ptr)
 		i[1]++;
 }
 
+static void	traitement_2(int *i, const char *restrict t, va_list ap, int j)
+{
+	int		l;
+
+	l = print_nopct(ft_strsub(&t[i[0] + 1], 0,
+		cont_carac((char*)&t[i[0] + 1], i[3]) + 1), t[i[0] + 1 + j], ap);
+	i[2] += l;
+	if (t[i[0] + 1 + j])
+		i[0] += j + 2;
+	else
+		i[0] += j + 1;
+}
+
 static void	traitement(int *i, const char *restrict t, va_list ap,
 	int (**f)(const char *restrict, va_list))
 {
+	int	j;
+
 	if (i[3] == 'n')
 	{
 		pct_n(i[2], ap, ft_strsub(&t[i[0] + 1], 0,
@@ -63,7 +78,7 @@ static void	traitement(int *i, const char *restrict t, va_list ap,
 		i[0] += cont_carac((char*)&t[i[0]], i[3]) + 1;
 	}
 	else if (i[1] != 17 && (verif_flag(ft_strsub(&t[i[0] + 1], 0,
-		cont_carac((char*)&t[i[0]], i[3]) + 1), i[3], 0, ap) == -1))
+		cont_carac((char*)&t[i[0] + 1], i[3]) + 1), i[3]) == -1))
 	{
 		i[2] += f[i[1]](ft_strsub(&t[i[0] + 1], 0,
 			cont_carac((char*)&t[i[0] + 1], i[3]) + 1), ap);
@@ -71,15 +86,10 @@ static void	traitement(int *i, const char *restrict t, va_list ap,
 			i[0]++;
 		i[0] += cont_carac((char*)&t[i[0]], i[3]) + 1;
 	}
-	else if (verif_flag(ft_strsub(&t[i[0] + 1], 0,
-		cont_carac((char*)&t[i[0]], i[3]) + 1), i[3], 0, ap) != -1
+	else if ((j = verif_flag(ft_strsub(&t[i[0] + 1], 0,
+		cont_carac((char*)&t[i[0] + 1], i[3]) + 1), i[3])) != -1
 			|| i[1] == 17)
-	{
-		i[2] += verif_flag(ft_strsub(&t[i[0] + 1], 0,
-					cont_carac((char*)&t[i[0]], i[3]) + 1), i[3], 1, ap);
-		i[0] += verif_flag(ft_strsub(&t[i[0] + 1], 0,
-					cont_carac((char*)&t[i[0]], i[3]) + 1), i[3], 0, ap) + 2;
-	}
+		traitement_2(i, t, ap, j);
 }
 
 int			ft_printf(const char *restrict format, ...)

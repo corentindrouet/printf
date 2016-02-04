@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 09:42:15 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/03 15:35:06 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/04 09:15:55 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		pct_jo(va_list ap, const char *restrict format, int base, int maj)
 	ptr = (intmax_t)va_arg(ap, intmax_t);
 	res = ft_ulltoa_base((long long)ptr, base);
 	res = precis_d(&res, format, nb2);
-	res = width_d(&res, format, nb1);
+	res = width_d(&res, format, nb1, nb2);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
 	if (ft_strchr(format, '#') != NULL)
@@ -53,7 +53,7 @@ int		pct_zo(va_list ap, const char *restrict format, int base, int maj)
 	ptr = (size_t)va_arg(ap, size_t);
 	res = ft_ulltoa_base((long long)ptr, base);
 	res = precis_d(&res, format, nb2);
-	res = width_d(&res, format, nb1);
+	res = width_d(&res, format, nb1, nb2);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
 	if (ft_strchr(format, '#') != NULL)
@@ -78,7 +78,7 @@ int		pct_oo(va_list ap, const char *restrict format, int base, int maj)
 	ptr = (unsigned int)va_arg(ap, unsigned int);
 	res = ft_uitoa_base((unsigned int)ptr, base);
 	res = precis_d(&res, format, nb2);
-	res = width_d(&res, format, nb1);
+	res = width_d(&res, format, nb1, nb2);
 	if (base > 10 && maj == 1)
 		ft_strtoupper(res);
 	if (ft_strchr(format, '#') != NULL)

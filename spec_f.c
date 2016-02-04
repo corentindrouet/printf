@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 13:35:24 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/01/13 09:32:01 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/04 13:58:25 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,29 +48,66 @@ int			recur_lltoa(unsigned long long nbr, char *ptr, int index)
 	return (index);
 }
 
-static int	recur_uitoa_b(unsigned int nbr, int base, char *ptr, int index)
+int			verif_flag(const char *restrict format, int s)
 {
-	char	*str;
+	int		i;
 
-	str = "0123456789abcdef";
-	if (nbr >= (unsigned int)base)
-	{
-		index = recur_uitoa_b(nbr / base, base, ptr, index);
-		index = recur_uitoa_b(nbr % base, base, ptr, index);
-	}
-	else
-	{
-		ptr[index] = str[nbr];
-		index++;
-	}
-	return (index);
+	i = -1;
+	while (format[++i] && format[i] != s)
+		if (format[i] != '+' && format[i] != '-' && !(format[i] >= '0'
+					&& format[i] <= '9') && format[i] != ' ' && format[i] != '#'
+				&& format[i] != 'h' && format[i] != 'l' && format[i] != 'j'
+				&& format[i] != 'z' && format[i] != '.'
+				&& format[i] != '*')
+			break ;
+	if (format[i] != s || s == '\0')
+		return (i);
+	return (-1);
 }
 
-char		*ft_uitoa_base(unsigned int nbr, int base)
+static int	init_decal(const char *restrict format, int nb1,
+		char *c, int *nbrneg)
 {
-	char	*ptr;
+	int		i;
 
-	ptr = ft_strnew(20);
-	recur_uitoa_b(nbr, base, ptr, 0);
-	return (ptr);
+	i = -1;
+	while (!(format[++i] > '0' && format[i] <= '9') && format[i] != '*')
+		if (!format[i] || format[i] == '.')
+			return (-1);
+		else if (format[i] == '0')
+			(*c) = '0';
+	i = star_or_nb(format);
+	if (format[i] == '*')
+	{
+		i = (nb1 >= 0) ? nb1 : -nb1;
+		if (nb1 < 0)
+			(*nbrneg)++;
+	}
+	else
+		i = ft_atoi(&format[i]);
+	return (i);
+}
+
+char		*decal_c(char **ptr, const char *restrict format, int nb1)
+{
+	int		i;
+	int		wid;
+	char	*res;
+	char	c;
+	int		nbrneg;
+
+	i = -1;
+	nbrneg = 0;
+	c = ' ';
+	if ((wid = init_decal(format, nb1, &c, &nbrneg)) == -1
+		|| wid <= (int)ft_strlen(*ptr))
+		return (*ptr);
+	res = ft_strnew(wid - ft_strlen(*ptr) + 1);
+	i = -1;
+	while (++i < (wid - (int)ft_strlen(*ptr)))
+		res[i] = c;
+	if (ft_strchr(format, '-') || nbrneg)
+		return (ft_strjoin(*ptr, res));
+	else
+		return (ft_strjoin(res, *ptr));
 }

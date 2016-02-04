@@ -6,19 +6,18 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 09:42:40 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/01 10:08:16 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/04 13:26:29 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	print_nopct(const char *restrict format, int i, va_list ap)
+int			print_nopct(const char *restrict format, char c, va_list ap)
 {
-	char	c;
 	char	*ptr;
 	int		j;
+	int		i;
 
-	c = format[i];
 	j = 0;
 	while (format[j] && !ft_isdigit(format[j]) && format[j] != '*')
 		j++;
@@ -28,12 +27,14 @@ static int	print_nopct(const char *restrict format, int i, va_list ap)
 			init(&i, &j, ap);
 		ptr = ft_strnew(2);
 		ptr[0] = c;
-		ptr = aj_decal(&ptr, format, j);
+		ptr = decal_c(&ptr, format, j);
 		ft_putstr(ptr);
 		return (ft_strlen(ptr));
 	}
-	else
+	else if (c != '\0')
 		ft_putchar(c);
+	else
+		return (0);
 	return (1);
 }
 
@@ -60,21 +61,29 @@ int			pct_pct(const char *restrict format, va_list ap)
 	return (ft_strlen(res));
 }
 
-int			verif_flag(const char *restrict format, int s, int e, va_list ap)
+static int	recur_uitoa_b(unsigned int nbr, int base, char *ptr, int index)
 {
-	int		i;
+	char	*str;
 
-	i = -1;
-	while (format[++i] && format[i] != s)
-		if (format[i] != '+' && format[i] != '-' && !(format[i] >= '0'
-					&& format[i] <= '9') && format[i] != ' ' && format[i] != '#'
-				&& format[i] != 'h' && format[i] != 'l' && format[i] != 'j'
-				&& format[i] != 'z' && format[i] != '%' && format[i] != '.'
-				&& format[i] != '*')
-			break ;
-	if (e == 1 && format[i] && format[i] != s)
-		return (print_nopct(format, i, ap));
-	else if (e == 0 && format[i] && format[i] != s)
-		return (i);
-	return (-1);
+	str = "0123456789abcdef";
+	if (nbr >= (unsigned int)base)
+	{
+		index = recur_uitoa_b(nbr / base, base, ptr, index);
+		index = recur_uitoa_b(nbr % base, base, ptr, index);
+	}
+	else
+	{
+		ptr[index] = str[nbr];
+		index++;
+	}
+	return (index);
+}
+
+char		*ft_uitoa_base(unsigned int nbr, int base)
+{
+	char	*ptr;
+
+	ptr = ft_strnew(20);
+	recur_uitoa_b(nbr, base, ptr, 0);
+	return (ptr);
 }

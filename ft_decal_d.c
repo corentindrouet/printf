@@ -6,13 +6,32 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/03 13:21:51 by cdrouet           #+#    #+#             */
-/*   Updated: 2016/02/03 15:08:24 by cdrouet          ###   ########.fr       */
+/*   Updated: 2016/02/04 13:58:23 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*precis_d(char **ptr, const char *restrict format, int nbr)
+static int	inii(const char *restrict format)
+{
+	int	i;
+	int	j;
+
+	j = -1;
+	i = -1;
+	while (!(format[++i] > '0' && format[i] <= '9'))
+		if (!format[i] || format[i] == '.')
+			break ;
+	while (format[++j] != '*')
+		if (!format[j] || format[j] == '.')
+			break ;
+	if ((j > i && format[j] && format[j] != '.')
+		|| (!format[i] && format[j] && format[j] != '.'))
+		i = j;
+	return (i);
+}
+
+char		*precis_d(char **ptr, const char *restrict format, int nbr)
 {
 	int		precision;
 	int		i;
@@ -39,7 +58,7 @@ char	*precis_d(char **ptr, const char *restrict format, int nbr)
 	return (res);
 }
 
-char	*plus_d(char **ptr, const char *restrict format, long long i)
+char		*plus_d(char **ptr, const char *restrict format, long long i)
 {
 	if (!ft_strchr(format, '+') && i >= 0)
 		return (*ptr);
@@ -48,34 +67,53 @@ char	*plus_d(char **ptr, const char *restrict format, long long i)
 	return (ft_strjoin("-", *ptr));
 }
 
-char	*width_d(char **ptr, const char *restrict format, int nbr)
+static int	init_decal_d(const char *restrict format, int *nb1,
+		char *c, int *nbrneg)
 {
 	int		i;
+
+	i = -1;
+	while (!(format[++i] > '0' && format[i] <= '9') && format[i] != '*')
+		if (!format[i] || format[i] == '.')
+			return (-1);
+		else if (format[i] == '0' && (!ft_strchr(format, '.')
+			|| ((ft_strchr(format, '.') + 1)[0] == '*' && nb1[2] < 0))
+			&& !ft_strchr(format, '-'))
+			(*c) = '0';
+	i = inii(format);
+	if (format[i] == '*')
+	{
+		i = (nb1[1] >= 0) ? nb1[1] : -nb1[1];
+		if (nb1[1] < 0)
+			(*nbrneg)++;
+	}
+	else
+		i = ft_atoi(&format[i]);
+	return (i);
+}
+
+char		*width_d(char **ptr, const char *restrict format, int nb1, int nb2)
+{
+	int		i[3];
 	int		wid;
 	char	*res;
 	char	c;
+	int		nbrneg;
 
-	i = -1;
+	i[1] = nb1;
+	i[2] = nb2;
 	c = ' ';
-	while (!(format[++i] > '0' && format[i] <= '9') && format[i] != '*')
-		if (!format[i] || format[i] == '.')
-			return (*ptr);
-		else if (format[i] == '0' && !ft_strchr(format, '.')
-			&& !ft_strchr(format, '-'))
-			c = '0';
-	if (format[i] == '*')
-		wid = nbr;
-	else
-		wid = ft_atoi(&format[i]);
-	if (wid <= (int)ft_strlen(*ptr))
+	nbrneg = 0;
+	if ((wid = init_decal_d(format, i, &c, &nbrneg)) == -1
+		|| wid <= (int)ft_strlen(*ptr))
 		return (*ptr);
 	res = ft_strnew(wid - ft_strlen(*ptr) + 1);
-	i = -1;
-	while (++i < (wid - (int)ft_strlen(*ptr)))
-		res[i] = c;
+	i[0] = -1;
+	while (++i[0] < (wid - (int)ft_strlen(*ptr)))
+		res[i[0]] = c;
 	if (c == '0' && ((*ptr)[0] == '+' || (*ptr)[0] == '-'))
 		return (ft_strjoin(ft_strsub(*ptr, 0, 1), ft_strjoin(res, &(*ptr)[1])));
-	else if (c == '0' || !ft_strchr(format, '-'))
+	else if (c == '0' || (!ft_strchr(format, '-') && !nbrneg))
 		return (ft_strjoin(res, *ptr));
 	else
 		return (ft_strjoin(*ptr, res));
